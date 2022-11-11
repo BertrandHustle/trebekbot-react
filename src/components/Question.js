@@ -6,7 +6,7 @@ export default class Question extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            text: '',
+            question: '',
             value: '',
             category: ''
         }
@@ -14,9 +14,9 @@ export default class Question extends Component {
     }
 
     componentDidMount(){
-        API.get("/question")
+        API.get("/game/question")
             .then(res => this.setState({
-                text: res.data.text,
+                question: res.data.question,
                 value: res.data.value,
                 category: res.data.category
             }))
@@ -29,9 +29,9 @@ export default class Question extends Component {
     render() {
         return (
             <div>
-                <h1>{this.text}</h1>
-                <h1>{this.value}</h1>
-                <h1>{this.category}</h1>
+                <h1>Question: {this.state.question}</h1>
+                <h1>Value: {this.state.value}</h1>
+                <h1>Category: {this.state.category}</h1>
             </div>
         )
     }

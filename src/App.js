@@ -13,11 +13,11 @@ class App extends Component {
 
     render() {
       return(
-        <body>
-          <Question/>
+        <>
           <AnswerForm/>
-        </body>
-      )
+          <Question/>
+        </>
+      );
     }
   }
 
