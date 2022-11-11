@@ -1,7 +1,11 @@
 import axios from 'axios'
 
-import proxy from '../package.json'
+import config from '../package.json'
 
+// fix: TypeError: baseURL.replace is not a function
 export default axios.create({
-    baseURL: proxy
+    baseURL: config.proxy
   });
+
+
+

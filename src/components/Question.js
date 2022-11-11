@@ -8,18 +8,18 @@ export default class Question extends Component {
         this.state = {
             text: '',
             value: '',
-            category: '',
+            category: ''
         }
         this.handleChange = this.handleChange.bind(this); 
     }
 
-    componentDidMount() {
-        API.get('/question')
-            .then(res => {
-                const text = res.data.text;
-                const value = res.data.value;
-                const category = res.data.category;
-            })
+    componentDidMount(){
+        API.get("/question")
+            .then(res => this.setState({
+                text: res.data.text,
+                value: res.data.value,
+                category: res.data.category
+            }))
     }
 
     handleChange(event){
@@ -28,11 +28,11 @@ export default class Question extends Component {
     
     render() {
         return (
-            <body>
-                <h1>this.state.text</h1>
-                <h1>this.state.value</h1>
-                <h1>this.state.category</h1>
-            </body>
+            <div>
+                <h1>{this.text}</h1>
+                <h1>{this.value}</h1>
+                <h1>{this.category}</h1>
+            </div>
         )
     }
 }       
