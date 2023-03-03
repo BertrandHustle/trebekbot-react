@@ -1,24 +1,18 @@
+import React, {useState} from 'react';
 
-import React, { Component } from "react";
+import AnswerForm from "components/forms/AnswerForm";
+import Question from "components/Question";
+import LoginForm from "components/forms/LoginForm";
 
-import AnswerForm from "./components/forms/AnswerForm";
-import Question from './components/Question';
+export default function App () {
 
+  const isAuthenticated = localStorage.getItem('isAuthenticated');
 
-class App extends Component {
-
-    constructor(props) {
-      super(props);
-    }
-
-    render() {
-      return(
-        <>
-          <AnswerForm/>
-          <Question/>
-        </>
-      );
-    }
-  }
-
-export default App;
+  return(
+    <>
+    <AnswerForm auth={isAuthenticated}/>
+    <Question auth={isAuthenticated}/>
+    <LoginForm/>
+    </>
+  )
+}

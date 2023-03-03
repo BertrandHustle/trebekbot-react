@@ -1,38 +1,51 @@
-import React, { Component } from "react";
+import React, {useState} from 'react';
 
-import API from '../TrebekbotAPI';
+import API from 'TrebekbotAPI';
 
-export default class Question extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            question: '',
-            value: '',
-            category: ''
-        }
-        this.handleChange = this.handleChange.bind(this); 
-    }
+const timerLength = 60;
 
-    componentDidMount(){
-        API.get("/game/question")
-            .then(res => this.setState({
-                question: res.data.question,
-                value: res.data.value,
-                category: res.data.category
-            }))
-    }
+export default function Question () {
+    const [timer, setTimer] = useState(setInterval());
+    const [question, setQuestion] = useState('');
+    const [value, setValue] = useState('');
+    const [category, setcategory] = useState('');
+    const [remainingTime, setRemainingTime] = useState(0);
 
-    handleChange(event){
-        this.setState({value: event.target.value});
-    }
     
-    render() {
-        return (
-            <div>
-                <h1>Question: {this.state.question}</h1>
-                <h1>Value: {this.state.value}</h1>
-                <h1>Category: {this.state.category}</h1>
-            </div>
-        )
+    function startTimer() {
+        setTimer(setInterval(tickTimer, timerLength))
     }
+
+    function tickTimer() {
+        if (remainingTime === 0) {
+            clearInterval(timer);
+        }
+        else {
+            setRemainingTime -= 1
+        }
+    }
+
+    function loadQuestion() {
+        startTimer();
+        API.get("/game/question")
+            .then(res => {
+                setQuestion(res.data.question);
+                setValue(res.data.value);
+                setcategory(res.data.category);
+            }
+        )
+    };
+
+    return (
+        <div>
+            <button> onClick={loadQuestion} </button>
+            <h1>Time: {remainingTime}</h1>
+
+            <h3>Question: {question}</h3>
+            <h3>Value: {value}</h3>
+            <h3>Category: {category}</h3>
+        </div>
+    )
 }       
+
+

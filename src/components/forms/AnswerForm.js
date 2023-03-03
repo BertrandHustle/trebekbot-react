@@ -1,32 +1,34 @@
-import React, { Component } from 'react';
+import { useState } from 'react';
 
-export default class AnswerForm extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {value: ''};
-    this.handleChange = this.handleChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
+import API from 'TrebekbotAPI';
+
+
+export default function AnswerForm() {
+
+  const [answer, setAnswer] = useState('');
+
+  const handleChange = (e) => {
+    setAnswer(e.target.value);
   }
 
-  handleChange(event){
-    this.setState({value: event.target.value});
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    API.post("/game/judge", {
+      userAnswer: answer
+    }).then(function (response) {
+      alert(response);
+      // prevent browser from refreshing
+      e.preventDefault();
+    })
   }
 
-  handleSubmit(event){
-    alert('Answer Submitted: ' + this.state.value);
-    // prevent browser from refreshing
-    event.preventDefault();
-  }
-
-  render() {
-    return (
-      <form onSubmit={this.handleSubmit}>        
+  return (
+    <form onSubmit={handleSubmit}>        
         <label>
           Name:
-          <input type="text" value={this.state.value} onChange={this.handleChange} /> 
+          <input type="text" value={answer} onChange={handleChange} /> 
         </label>
-        <input type="submit" value="Submit" />
-      </form>
-    );
-  }
+      <input type="submit" value="Submit" />
+    </form>
+  )
 }
