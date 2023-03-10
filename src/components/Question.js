@@ -1,32 +1,40 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 
+import Timer from './Timer'
 import API from 'TrebekbotAPI';
 
-const timerLength = 60;
-
 export default function Question () {
-    const [timer, setTimer] = useState(setInterval());
     const [question, setQuestion] = useState('');
+    const [questionIsLive, setQuestionIsLive] = useState(false);
     const [value, setValue] = useState('');
     const [category, setcategory] = useState('');
-    const [remainingTime, setRemainingTime] = useState(0);
+    const timerLength = 60;
 
+    function Timer () {
+        const [remainingTime, setRemainingTime] = useState(0);
     
-    function startTimer() {
-        setTimer(setInterval(tickTimer, timerLength))
-    }
+        useEffect(() => {
+            if (remainingTime === 0) {
+                setQuestionIsLive = false;
+                return;
+            }
 
-    function tickTimer() {
-        if (remainingTime === 0) {
-            clearInterval(timer);
-        }
-        else {
-            setRemainingTime -= 1
-        }
+            const timer = setInterval(() => {
+                setRemainingTime -= 1;
+            }, 1000);
+            
+            return () => clearInterval(timer);
+        }, [remainingTime]);
+    
+        return(
+            <div>
+                <h1>Time: {remainingTime}</h1>
+            </div>
+        )
     }
 
     function loadQuestion() {
-        startTimer();
+        setQuestionIsLive(true);
         API.get("/game/question")
             .then(res => {
                 setQuestion(res.data.question);
@@ -38,9 +46,8 @@ export default function Question () {
 
     return (
         <div>
-            <button> onClick={loadQuestion} </button>
-            <h1>Time: {remainingTime}</h1>
-
+            { questionIsLive ? <Timer/> : null }
+            <button onClick={loadQuestion}> Get Question </button>
             <h3>Question: {question}</h3>
             <h3>Value: {value}</h3>
             <h3>Category: {category}</h3>
