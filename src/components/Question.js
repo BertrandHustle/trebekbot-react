@@ -11,16 +11,16 @@ export default function Question () {
     const timerLength = 60;
 
     function Timer () {
-        const [remainingTime, setRemainingTime] = useState(0);
+        const [remainingTime, setRemainingTime] = useState(timerLength);
     
         useEffect(() => {
             if (remainingTime === 0) {
-                setQuestionIsLive = false;
+                setQuestionIsLive(false);
                 return;
             }
 
             const timer = setInterval(() => {
-                setRemainingTime -= 1;
+                setRemainingTime(remainingTime - 1);
             }, 1000);
             
             return () => clearInterval(timer);
