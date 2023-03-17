@@ -1,6 +1,5 @@
 import React, {useEffect, useState} from 'react';
 
-import Timer from './Timer'
 import API from 'TrebekbotAPI';
 
 export default function Question () {
@@ -16,6 +15,9 @@ export default function Question () {
         useEffect(() => {
             if (remainingTime === 0) {
                 setQuestionIsLive(false);
+                setQuestion(null);
+                setValue(null);
+                setcategory(null);
                 return;
             }
 
@@ -48,9 +50,9 @@ export default function Question () {
         <div>
             { questionIsLive ? <Timer/> : null }
             <button onClick={loadQuestion}> Get Question </button>
-            <h3>Question: {question}</h3>
-            <h3>Value: {value}</h3>
-            <h3>Category: {category}</h3>
+            <h3>Question: {questionIsLive ? question : null}</h3>
+            <h3>Value: {questionIsLive ? value : null}</h3>
+            <h3>Category: {questionIsLive ? category : null}</h3>
         </div>
     )
 }       
