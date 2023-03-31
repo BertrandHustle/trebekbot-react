@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, { useEffect, useState } from 'react';
 
 import AnswerForm from "components/forms/AnswerForm";
 import Question from "components/Question";
@@ -6,13 +6,27 @@ import LoginForm from "components/forms/LoginForm";
 
 export default function App () {
 
-  const isAuthenticated = localStorage.getItem('isAuthenticated');
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+
+  useEffect(() => {
+    function checkIfAuthenticated() {
+      const authenticated = localStorage.getItem('isAuthenticated')
+      if (authenticated) {
+        setIsAuthenticated(true);
+      }
+    }
+    window.addEventListener('storage', checkIfAuthenticated)
+
+    return () => {
+      window.removeEventListener('storage', checkIfAuthenticated)
+    }
+  });
 
   return(
     <>
-    <AnswerForm auth={isAuthenticated}/>
-    <Question auth={isAuthenticated}/>
-    <LoginForm/>
+    { isAuthenticated ? <AnswerForm/> : null}
+    { isAuthenticated ? <Question/> : null}
+    { !isAuthenticated ? <LoginForm/> : null }
     </>
   )
 }

@@ -4,10 +4,10 @@ import config from '../package.json'
 
 const trebekbotAxios = axios.create({
   baseURL: config.proxy,
+  xsrfCookieName: 'csrftoken',
+  xsrfHeaderName: 'X-CSRFTOKEN',
+  withCredentials: true
 });
-
-//trebekbotAxios.defaults.headers.post['X-CSRFTOKEN'] = 'csrftoken';
-//trebekbotAxios.defaults.withCredentials = true;
 
 export default trebekbotAxios;
 
