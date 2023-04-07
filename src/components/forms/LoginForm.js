@@ -49,12 +49,16 @@ function getUsername () {
     });
   }
   
-function login (event, username, password) {
+function login (event, uname, pass) {
     event.preventDefault();
-    API.post(
-      "/game/login/", 
-      {payload: JSON.stringify({username: username, password: password})}
-    )
+    API({
+      method: 'post',
+      url: '/game/login/',
+      auth: {
+        username: uname,
+        password: pass
+      }
+    })
     .then((data) => {
       console.log(data);
       localStorage.setItem('isAuthenticated', true);
@@ -66,18 +70,7 @@ function login (event, username, password) {
     });
   }
   
-function logout () {
-    API.post("/game/logout", {
-      credentials: "same-origin",
-    })
-    .then((data) => {
-      console.log(data);
-      localStorage.setItem('isAuthenticated', false);
-    })
-    .catch((err) => {
-      console.log(err);
-    });
-  };
+
 
 export default function LoginForm() {
 

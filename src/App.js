@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 import AnswerForm from "components/forms/AnswerForm";
 import Question from "components/Question";
 import LoginForm from "components/forms/LoginForm";
+import LogoutButton from 'components/auth/LogoutButton';
 
 export default function App () {
 
@@ -11,8 +12,12 @@ export default function App () {
   useEffect(() => {
     function checkIfAuthenticated() {
       const authenticated = localStorage.getItem('isAuthenticated')
-      if (authenticated) {
+      let authBool = JSON.parse(authenticated);
+      if (authBool) {
         setIsAuthenticated(true);
+      }
+      else if (!authBool) {
+        setIsAuthenticated(false);
       }
     }
     window.addEventListener('storage', checkIfAuthenticated)
@@ -24,9 +29,10 @@ export default function App () {
 
   return(
     <>
-    { isAuthenticated ? <AnswerForm/> : null}
-    { isAuthenticated ? <Question/> : null}
+    { isAuthenticated ? <AnswerForm/> : null }
+    { isAuthenticated ? <Question/> : null }
     { !isAuthenticated ? <LoginForm/> : null }
+    { isAuthenticated ? <LogoutButton/> : null }
     </>
   )
 }
