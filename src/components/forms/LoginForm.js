@@ -1,5 +1,6 @@
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 
+import { AuthContext, UsernameContext } from 'App';
 import API from 'TrebekbotAPI';
 
 import Cookies from "universal-cookie";
@@ -14,74 +15,80 @@ const cookies = new Cookies();
 //   })
 // }
 
+// function getSession () {
+//     API.get("/game/session/", {
+//       credentials: "same-origin",
+//     })
+//     .then((res) => res.json())
+//     .then((data) => {
+//       console.log(data);
+//       if (data.isAuthenticated) {
 
-function getSession () {
-    API.get("/game/session/", {
-      credentials: "same-origin",
-    })
-    .then((res) => res.json())
-    .then((data) => {
-      console.log(data);
-      if (data.isAuthenticated) {
-        localStorage.setItem('isAuthenticated', true);
-      } else {
-        localStorage.setItem('isAuthenticated', false);
-      }
-    })
-    .catch((err) => {
-      console.log(err);
-    });
-  }
+//         localStorage.setItem('isAuthenticated', true);
+//       } else {
+//         localStorage.setItem('isAuthenticated', false);
+//       }
+//     })
+//     .catch((err) => {
+//       console.log(err);
+//     });
+//   }
   
-function getUsername () {
-    API.get("/game/get-username/", {
-      headers: {
-        "Content-Type": "application/json",
-      },
-      credentials: "same-origin",
-    })
-    .then((res) => res.json())
-    .then((data) => {
-      console.log("You are logged in as: " + data.username);
-    })
-    .catch((err) => {
-      console.log(err);
-    });
-  }
-  
-function login (event, uname, pass) {
-    event.preventDefault();
-    API({
-      method: 'post',
-      url: '/game/login/',
-      auth: {
-        username: uname,
-        password: pass
-      }
-    })
-    .then((data) => {
-      console.log(data);
-      localStorage.setItem('isAuthenticated', true);
-      window.dispatchEvent(new Event('storage'));
-    })
-    .catch((err) => {
-      console.log(err);
-      return {error: "Wrong username or password."};
-    });
-  }
-  
+
 
 
 export default function LoginForm() {
 
-    const [username, setUsername] = useState('');
-    const [password, setPassword] = useState('');
+    const { isAuthenticated, setIsAuthenticated } = useContext(AuthContext);
+    const { username, setUsername } = useContext(UsernameContext);
+
+    // function getUsername () {
+    //   API.get("/game/get-username/", {
+    //     headers: {
+    //       "Content-Type": "application/json",
+    //     },
+    //     credentials: "same-origin",
+    //   })
+    //   .then((res) => res.json())
+    //   .then((data) => {
+    //     console.log("You are logged in as: " + data.username);
+    //   })
+    //   .catch((err) => {
+    //     console.log(err);
+    //   });
+    // }
+    
+  function login (event, uname, pass) {
+      event.preventDefault();
+      API({
+        method: 'post',
+        url: '/game/login/',
+        auth: {
+          username: uname,
+          password: pass
+        }
+      })
+      .then((data) => {
+        console.log(data);
+        setIsAuthenticated(true);
+        setUsername(uname);
+        window.dispatchEvent(new Event('storage'));
+      })
+      .catch((err) => {
+        console.log(err);
+        return {error: "Wrong username or password."};
+      });
+    }
+    
+
+    const [formUsername, setFormUsername] = useState('');
+    const [formPassword, setFormPassword] = useState('');
     const [error, setError] = useState('');
 
     function handleLogin (e) {
         e.preventDefault();
-        const loginResult = login(e, username, password);
-        if ('error' in loginResult){
+        const loginResult = login(e, formUsername, formPassword);
+        if (loginResult && 'error' in loginResult){
             setError(loginResult.error);
         }
     }
@@ -94,11 +101,11 @@ export default function LoginForm() {
             <form onSubmit={handleLogin}>
             <div className="form-group">
                 <label htmlFor="username">Username</label>
-                <input type="text" className="form-control" id="username" name="username" value={username} onChange={(e) => setUsername(e.target.value)} />
+                <input type="text" className="form-control" id="username" name="username" value={formUsername} onChange={(e) => setFormUsername(e.target.value)} />
             </div>
             <div className="form-group">
                 <label htmlFor="password">Password</label>
-                <input type="password" className="form-control" id="password" name="password" value={password} onChange={(e) => setPassword(e.target.value)} />
+                <input type="password" className="form-control" id="password" name="password" value={formPassword} onChange={(e) => setFormPassword(e.target.value)} />
                 <div>
                 {error &&
                     <small className="text-danger">
@@ -112,5 +119,3 @@ export default function LoginForm() {
         </div>
     );
 }
-
-
