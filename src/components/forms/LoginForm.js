@@ -35,8 +35,6 @@ const cookies = new Cookies();
 //   }
   
 
-
-
 export default function LoginForm() {
 
     const { isAuthenticated, setIsAuthenticated } = useContext(AuthContext);
@@ -70,9 +68,10 @@ export default function LoginForm() {
       })
       .then((data) => {
         console.log(data);
+        sessionStorage.setItem('isAuthenticated', true);
+        sessionStorage.setItem('username', uname);
         setIsAuthenticated(true);
         setUsername(uname);
-        window.dispatchEvent(new Event('storage'));
       })
       .catch((err) => {
         console.log(err);
