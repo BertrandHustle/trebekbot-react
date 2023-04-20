@@ -5,7 +5,7 @@ import Question from "components/Question";
 import LoginForm from "components/forms/LoginForm";
 import LogoutButton from 'components/auth/LogoutButton';
 
-const initAuthValue = sessionStorage.getItem('isAuthenticated');
+const initAuthValue = JSON.parse(sessionStorage.getItem('isAuthenticated'));
 const initUsernameValue = sessionStorage.getItem('username');
 
 export const AuthContext = createContext(initAuthValue);
