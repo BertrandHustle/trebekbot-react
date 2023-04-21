@@ -16,9 +16,6 @@ export default function App () {
   const [isAuthenticated, setIsAuthenticated] = useState(initAuthValue);
   const [username, setUsername] = useState(initUsernameValue)
 
-  console.log(isAuthenticated);
-  console.log(initAuthValue);
-
   return(
     <UsernameContext.Provider value={{ username, setUsername }}>
       <AuthContext.Provider value={{ isAuthenticated, setIsAuthenticated }}>
