@@ -3,58 +3,10 @@ import { useContext, useState } from 'react';
 import { AuthContext, UsernameContext } from 'App';
 import API from 'TrebekbotAPI';
 
-import Cookies from "universal-cookie";
-
-const cookies = new Cookies();
-
-// function setCSRFCookie() {
-//   API.get('/game/csrf')
-//   .then((res) => res.json())
-//   .then((data) => {
-//     console.log(data.)
-//   })
-// }
-
-// function getSession () {
-//     API.get("/game/session/", {
-//       credentials: "same-origin",
-//     })
-//     .then((res) => res.json())
-//     .then((data) => {
-//       console.log(data);
-//       if (data.isAuthenticated) {
-
-//         localStorage.setItem('isAuthenticated', true);
-//       } else {
-//         localStorage.setItem('isAuthenticated', false);
-//       }
-//     })
-//     .catch((err) => {
-//       console.log(err);
-//     });
-//   }
-  
-
 export default function LoginForm() {
 
     const { isAuthenticated, setIsAuthenticated } = useContext(AuthContext);
     const { username, setUsername } = useContext(UsernameContext);
-
-    // function getUsername () {
-    //   API.get("/game/get-username/", {
-    //     headers: {
-    //       "Content-Type": "application/json",
-    //     },
-    //     credentials: "same-origin",
-    //   })
-    //   .then((res) => res.json())
-    //   .then((data) => {
-    //     console.log("You are logged in as: " + data.username);
-    //   })
-    //   .catch((err) => {
-    //     console.log(err);
-    //   });
-    // }
     
   function login (event, uname, pass) {
       event.preventDefault();

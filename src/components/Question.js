@@ -1,12 +1,11 @@
-import React, {useEffect, useState} from 'react';
+import { QuestionContext } from 'App';
+import React, {useContext, useEffect, useState} from 'react';
 
 import API from 'TrebekbotAPI';
 
 export default function Question () {
-    const [question, setQuestion] = useState('');
-    const [questionIsLive, setQuestionIsLive] = useState(false);
-    const [value, setValue] = useState('');
-    const [category, setcategory] = useState('');
+    const { question, setQuestion } = useContext(QuestionContext);
+    const [ questionIsLive, setQuestionIsLive ] = useState(false);
     const timerLength = 60;
 
     function Timer () {
@@ -15,9 +14,6 @@ export default function Question () {
         useEffect(() => {
             if (remainingTime === 0) {
                 setQuestionIsLive(false);
-                setQuestion(null);
-                setValue(null);
-                setcategory(null);
                 return;
             }
 
@@ -39,9 +35,7 @@ export default function Question () {
         setQuestionIsLive(true);
         API.get("/game/question")
             .then(res => {
-                setQuestion(res.data.question);
-                setValue(res.data.value);
-                setcategory(res.data.category);
+                setQuestion(JSON.parse(res.data));
             }
         )
     };
@@ -50,9 +44,9 @@ export default function Question () {
         <div>
             { questionIsLive ? <Timer/> : null }
             <button onClick={loadQuestion}> Get Question </button>
-            <h3>Question: {questionIsLive ? question : null}</h3>
-            <h3>Value: {questionIsLive ? value : null}</h3>
-            <h3>Category: {questionIsLive ? category : null}</h3>
+            <h3>Question: {questionIsLive ? question.text : null}</h3>
+            <h3>Value: {questionIsLive ? question.value : null}</h3>
+            <h3>Category: {questionIsLive ? question.category : null}</h3>
         </div>
     )
 }       

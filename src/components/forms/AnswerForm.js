@@ -1,6 +1,6 @@
 import { useContext, useState } from 'react';
 
-import { UsernameContext } from 'App';
+import { QuestionContext, UsernameContext } from 'App';
 import API from 'TrebekbotAPI';
 
 
@@ -9,6 +9,7 @@ export default function AnswerForm() {
   const [ answer, setAnswer ] = useState('');
   const [ score, setScore ] = useState(0);
   const { username, setUsername } = useContext(UsernameContext);
+  const { question, setQuestion } = useContext(QuestionContext);
 
   const handleChange = (e) => {
     setAnswer(e.target.value);
@@ -17,7 +18,8 @@ export default function AnswerForm() {
   const handleSubmit = (e) => {
     e.preventDefault();
     API.post("/game/judge", {
-      userAnswer: answer
+      userAnswer: answer,
+      questionId: question.id
     }).then(function (response) {
       alert(response.data.text);
       setScore(response.data.score);
