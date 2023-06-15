@@ -2,6 +2,7 @@ import { useContext, useState } from 'react';
 
 import { AuthContext, UsernameContext } from 'App';
 import API from 'TrebekbotAPI';
+import { trebekbotUrls } from 'TrebekbotAPI';
 
 export default function LoginForm() {
 
@@ -12,7 +13,7 @@ export default function LoginForm() {
       event.preventDefault();
       API({
         method: 'post',
-        url: '/game/login/',
+        url: trebekbotUrls.login,
         auth: {
           username: uname,
           password: pass

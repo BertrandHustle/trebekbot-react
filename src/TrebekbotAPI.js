@@ -9,5 +9,11 @@ const trebekbotAxios = axios.create({
   withCredentials: true
 });
 
-export default trebekbotAxios;
+export const trebekbotUrls = {
+  'judgeAnswer': '/game/judge/',
+  'login': '/game/login/',
+  'getQuestion': '/game/question/',
+  'topTen': '/game/topten/'
+}
 
+export default trebekbotAxios;
