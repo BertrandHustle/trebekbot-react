@@ -22,6 +22,8 @@ export default function AnswerForm() {
     setAnswer(e.target.value);
   }
 
+  console.log(username)
+
   const handleSubmit = (e) => {
     e.preventDefault();
     API.post(trebekbotUrls.judgeAnswer, {
@@ -30,11 +32,12 @@ export default function AnswerForm() {
     }).then(function (response) {
       alert(response.data.text);
       setScore(response.data.score);
+      setTopTen(topTen => ({...topTen, [username]: response.data.score}))
       let result = response.data.result;
       // if question is answered correctly
-      // if (result === true) {
-      //   setQuestion('');
-      // }
+      if (result === true) {
+        setQuestion('');
+      }
       // prevent browser from refreshing
       e.preventDefault();
     })
