@@ -8,10 +8,15 @@ import { trebekbotUrls } from 'TrebekbotAPI';
 export default function AnswerForm() {
 
   const [ answer, setAnswer ] = useState('');
-  const [ score, setScore ] = useState(0);
   const { topTen, setTopTen } = useContext(TopTenContext);
   const { username, setUsername } = useContext(UsernameContext);
   const { question, setQuestion } = useContext(QuestionContext);
+  const [ score, setScore ] = useState();
+
+  API.get(trebekbotUrls.score)
+    .then((response) => {
+      setScore(response.data);
+    });
 
   const handleChange = (e) => {
     setAnswer(e.target.value);
@@ -30,7 +35,6 @@ export default function AnswerForm() {
       // if (result === true) {
       //   setQuestion('');
       // }
-      console.log(topTen)
       // prevent browser from refreshing
       e.preventDefault();
     })
