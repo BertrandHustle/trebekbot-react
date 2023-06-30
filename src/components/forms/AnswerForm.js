@@ -8,8 +8,8 @@ import { trebekbotUrls } from 'TrebekbotAPI';
 export default function AnswerForm() {
 
   const [ answer, setAnswer ] = useState('');
-  const { topTen, setTopTen } = useContext(TopTenContext);
-  const { username, setUsername } = useContext(UsernameContext);
+  const { setTopTen } = useContext(TopTenContext);
+  const { username } = useContext(UsernameContext);
   const { question, setQuestion } = useContext(QuestionContext);
   const [ score, setScore ] = useState();
 

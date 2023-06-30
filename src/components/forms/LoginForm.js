@@ -1,18 +1,18 @@
 import { useContext, useState } from 'react';
 
-import { AuthContext, UsernameContext } from 'App';
+import { AuthContext, ToastMessageContext, UsernameContext } from 'App';
 import API from 'TrebekbotAPI';
 import { trebekbotUrls } from 'TrebekbotAPI';
 
 export default function LoginForm() {
 
-    const { isAuthenticated, setIsAuthenticated } = useContext(AuthContext);
-    const { username, setUsername } = useContext(UsernameContext);
+    const { setIsAuthenticated } = useContext(AuthContext);
+    const { setToastMessage } = useContext(ToastMessageContext);
+    const { setUsername } = useContext(UsernameContext);
     const [ formUsername, setFormUsername ] = useState('');
     const [ formPassword, setFormPassword ] = useState('');
     const [ error, setError ] = useState('');
-    const [ newsMessage, setNewsMessage ] = useState('');
-      
+
     function login (event, uname, pass) {
         event.preventDefault();
         API({
@@ -23,14 +23,14 @@ export default function LoginForm() {
             password: pass
           }
         })
-        .then((data) => {
-          console.log(data);
+        .then((resp) => {
           sessionStorage.setItem('isAuthenticated', true);
           sessionStorage.setItem('username', uname);
           setIsAuthenticated(true);
           setUsername(uname);
-          if (data.new) {
-            setNewsMessage("New user created! Thanks for signing up for Trebekbot.");
+          if (resp.data.new) {
+            console.log('NEW USER');
+            setToastMessage("New user created! Thanks for signing up for Trebekbot.");
           }
         })
         .catch((err) => {
@@ -48,11 +48,6 @@ export default function LoginForm() {
         <div className="container mt-3">
             <h1>React Cookie Auth</h1>
             <br />
-            { newsMessage && 
-              <div class="alert alert-primary" role="alert">
-                {newsMessage}
-              </div>
-            }
             <h2>Login</h2>
             <form onSubmit={handleLogin}>
             <div className="form-group">
