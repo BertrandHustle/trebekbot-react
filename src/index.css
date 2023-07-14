@@ -11,3 +11,10 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+@font-face {
+  font-family: "Swiss911";
+  src: local("Swiss911"),
+   url("./fonts/Swiss911.otf") format("opentype");
+  font-weight: bold;
+}

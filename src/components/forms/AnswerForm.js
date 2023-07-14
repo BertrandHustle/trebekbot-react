@@ -1,6 +1,6 @@
 import { useContext, useState } from 'react';
 
-import { QuestionContext, UsernameContext, TopTenContext } from 'App';
+import { QuestionContext, UsernameContext, TimerContext, TopTenContext } from 'App';
 import API from 'TrebekbotAPI';
 import { trebekbotUrls } from 'TrebekbotAPI';
 
@@ -8,11 +8,13 @@ import { trebekbotUrls } from 'TrebekbotAPI';
 export default function AnswerForm() {
 
   const [ answer, setAnswer ] = useState('');
+  const { setTime } = useContext(TimerContext);
   const { setTopTen } = useContext(TopTenContext);
   const { username } = useContext(UsernameContext);
   const { question, setQuestion } = useContext(QuestionContext);
   const [ score, setScore ] = useState();
 
+  // TODO: move this into scoreboard to reduce calls to backend
   API.get(trebekbotUrls.score)
     .then((response) => {
       setScore(response.data);
@@ -36,6 +38,7 @@ export default function AnswerForm() {
       let result = response.data.result;
       // if question is answered correctly
       if (result === true) {
+        setTime(0);
         setQuestion({});
       }
     })

@@ -5,7 +5,9 @@ import TopTenTable from 'components/Scoreboard';
 import Question from "components/Question";
 import LoginForm from "components/forms/LoginForm";
 import LogoutButton from 'components/auth/LogoutButton';
+import Timer from 'components/Timer';
 import ToastAlert from 'components/ToastAlert';
+
 import API from 'TrebekbotAPI';
 import { trebekbotUrls } from 'TrebekbotAPI';
 
@@ -15,14 +17,16 @@ const initUsernameValue = sessionStorage.getItem('username');
 export const AuthContext = createContext(initAuthValue);
 export const UsernameContext = createContext(initUsernameValue);
 export const QuestionContext = createContext();
-export const TopTenContext = createContext();
+export const TimerContext = createContext();
 export const ToastMessageContext = createContext();
+export const TopTenContext = createContext();
 
 export default function App () {
 
   const [ isAuthenticated, setIsAuthenticated ] = useState(initAuthValue);
   const [ username, setUsername ] = useState(initUsernameValue);
   const [ question, setQuestion ] = useState({});
+  const [ time, setTime ] = useState();
   const [ topTen, setTopTen ] = useState();
   const [ toastMessage, setToastMessage ] = useState();
 
@@ -35,20 +39,23 @@ export default function App () {
 
   return(
     <ToastMessageContext.Provider value={{ toastMessage, setToastMessage }}>
-      <ToastAlert/>
-      <QuestionContext.Provider value={{ question, setQuestion }}>
-        <UsernameContext.Provider value={{ username, setUsername }}>
-          <AuthContext.Provider value={{ isAuthenticated, setIsAuthenticated }}>
-            <TopTenContext.Provider value={{ topTen, setTopTen }}>
-                { isAuthenticated ? <Question/> : null }
-                { !isAuthenticated ? <LoginForm/> : null }
-                { isAuthenticated ? <LogoutButton/> : null }
-                { isAuthenticated ? <AnswerForm/> : null }
-                { isAuthenticated && topTen ? <TopTenTable/> : null }
-            </TopTenContext.Provider>
-          </AuthContext.Provider>
-        </UsernameContext.Provider>
-      </QuestionContext.Provider>
+      { toastMessage ? <ToastAlert/> : null }
+      <TimerContext.Provider value={{ time, setTime }}>
+        <QuestionContext.Provider value={{ question, setQuestion }}>
+          <UsernameContext.Provider value={{ username, setUsername }}>
+            <AuthContext.Provider value={{ isAuthenticated, setIsAuthenticated }}>
+              <TopTenContext.Provider value={{ topTen, setTopTen }}>
+                  { isAuthenticated ? <Question/> : null }
+                  { !isAuthenticated ? <LoginForm/> : null }
+                  { isAuthenticated ? <LogoutButton/> : null }
+                  { isAuthenticated ? <AnswerForm/> : null }
+                  { isAuthenticated && question ? <Timer/> : null }
+                  { isAuthenticated && topTen ? <TopTenTable/> : null }
+              </TopTenContext.Provider>
+            </AuthContext.Provider>
+          </UsernameContext.Provider>
+        </QuestionContext.Provider>
+      </TimerContext.Provider>
     </ToastMessageContext.Provider>
   )
 }
