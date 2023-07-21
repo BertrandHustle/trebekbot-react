@@ -33,8 +33,9 @@ export default function Question () {
         },
         card: {
             width: '50rem',
-            marginLeft: 'auto',
-            marginRight: 'auto',
+            display: 'block',
+            margin: 'auto',
+            marginTop: 5,
             backgroundColor: palette.questionBackground
         }
     }
@@ -50,7 +51,7 @@ export default function Question () {
     };
 
     return (
-        <div>
+        <div class='text-center'>
             <Card style={styles.card} className='text-center'>
                 <Card.Body>
                     <Card.Title style={styles.categoryText}>
@@ -64,7 +65,7 @@ export default function Question () {
                     </Card.Text>
                 </Card.Body>
             </Card>
-
+            <br></br>
             <Button variant='primary' onClick={loadQuestion}> Get Question </Button>
         </div>
     );
