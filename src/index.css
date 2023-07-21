@@ -13,6 +13,13 @@ code {
 }
 
 @font-face {
+  font-family: "ITCKorinna";
+  src: local("ITCKorinna"),
+   url("./fonts/ITCKorinna.otf") format("opentype");
+  font-weight: bold;
+}
+
+@font-face {
   font-family: "Swiss911";
   src: local("Swiss911"),
    url("./fonts/Swiss911.otf") format("opentype");
