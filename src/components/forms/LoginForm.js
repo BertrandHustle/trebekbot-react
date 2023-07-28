@@ -59,7 +59,7 @@ export default function LoginForm() {
                 <input type="password" className="form-control" id="password" name="password" value={formPassword} onChange={(e) => setFormPassword(e.target.value)} />
             </div>
             { error && 
-              <div class="alert alert-danger" role="alert">
+              <div className="alert alert-danger" role="alert">
                 {error}
               </div>
             }

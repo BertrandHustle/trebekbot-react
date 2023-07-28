@@ -1,5 +1,5 @@
 import { QuestionContext, TimerContext } from 'App';
-import React, {useContext, useState} from 'react';
+import React, {useContext} from 'react';
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 
@@ -13,7 +13,6 @@ import { trebekbotUrls } from 'TrebekbotAPI';
 export default function Question () {
     const { setTime } = useContext(TimerContext);
     const { question, setQuestion } = useContext(QuestionContext);
-    const [ questionIsLive, setQuestionIsLive ] = useState(false);
 
     const styles = {
         categoryText: {
@@ -41,7 +40,6 @@ export default function Question () {
     }
 
     function loadQuestion() {
-        setQuestionIsLive(true);
         API.get(trebekbotUrls.getQuestion)
             .then(res => {
                 setTime(60);
@@ -51,22 +49,22 @@ export default function Question () {
     };
 
     return (
-        <div class='text-center'>
+        <div className='text-center'>
             <Card style={styles.card} className='text-center'>
                 <Card.Body>
                     <Card.Title style={styles.categoryText}>
-                        {questionIsLive ? question.category : null}
+                        {question ? question.category : null}
                     </Card.Title>
                     <Card.Subtitle style={styles.categoryText}>
-                        {questionIsLive ? question.value : null}
+                        {question ? question.value : null}
                     </Card.Subtitle>
                     <Card.Text style={styles.questionText}>
-                        {questionIsLive ? question.text : null}
+                        {question ? question.text : null}
                     </Card.Text>
                 </Card.Body>
             </Card>
             <br></br>
-            <Button variant='primary' onClick={loadQuestion}> Get Question </Button>
+            <Button variant='primary' onClick={loadQuestion} disabled={question ? true : false}> Get Question </Button>
         </div>
     );
 }       

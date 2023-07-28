@@ -25,7 +25,7 @@ export default function App() {
 
 	const [isAuthenticated, setIsAuthenticated] = useState(initAuthValue);
 	const [username, setUsername] = useState(initUsernameValue);
-	const [question, setQuestion] = useState({});
+	const [question, setQuestion] = useState();
 	const [time, setTime] = useState();
 	const [topTen, setTopTen] = useState();
 	const [toastMessage, setToastMessage] = useState();
