@@ -1,0 +1,1 @@
+<div>Name: {username} Score: {score}</div>
