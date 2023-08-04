@@ -12,6 +12,9 @@ export default function Timer () {
             width: '50rem',
             margin: 'auto',
             marginTop: 5,
+        },
+        remainingTime: {
+            
         }
     }
 
@@ -30,9 +33,6 @@ export default function Timer () {
     }, [setQuestion, time, setTime]);
 
     return(
-        <div>
-            <h1>Time: {time ? time : null}</h1>
-            <ProgressBar now={time * -1} max={60} min={-60} style={styles.questionTimer} />
-        </div>
+        <ProgressBar now={time * -1} max={0} min={-60} style={styles.questionTimer}/>
     )
 }

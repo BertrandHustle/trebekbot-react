@@ -25,3 +25,10 @@ code {
    url("./fonts/Swiss911.otf") format("opentype");
   font-weight: bold;
 }
+
+@font-face {
+  font-family: "UniversBlack";
+  src: local("UniversBlack"),
+   url("./fonts/UniversBlack.otf") format("opentype");
+  font-weight: bold;
+}
