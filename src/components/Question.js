@@ -12,7 +12,6 @@ import { trebekbotUrls } from 'TrebekbotAPI';
 export default function Question () {
     // set if question is daily double but wager has not yet been entered
     const [ liveWager, setLiveWager ] = useState();
-
     const { setTime } = useContext(TimerContext);
     const { question, setQuestion } = useContext(QuestionContext);
     const { wager } = useContext(WagerContext);
@@ -64,7 +63,10 @@ export default function Question () {
                         {question && !liveWager ? question.category : null}
                     </Card.Title>
                     <Card.Subtitle style={styles.categoryText}>
-                        {question && !liveWager ? question.value : null}
+                        {question && !liveWager && !wager ? question.value : null}
+                    </Card.Subtitle>
+                    <Card.Subtitle style={styles.categoryText}>
+                        {question && !liveWager && wager ? wager : null}
                     </Card.Subtitle>
                     <Card.Text style={styles.questionText}>
                         {question && !liveWager ? question.text : null}
