@@ -1,18 +1,21 @@
-import { QuestionContext, TimerContext } from 'App';
-import React, {useContext} from 'react';
+import { QuestionContext, TimerContext, WagerContext } from 'App';
+import React, { useContext, useEffect, useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 
 import API from 'TrebekbotAPI';
+import DailyDoubleModal from './modals/DailyDouble';
 
 import { font, palette } from 'css/css';
 import { trebekbotUrls } from 'TrebekbotAPI';
 
-//TODO: prevent button from working if question is already in play
-
 export default function Question () {
+    // set if question is daily double but wager has not yet been entered
+    const [ liveWager, setLiveWager ] = useState();
+
     const { setTime } = useContext(TimerContext);
     const { question, setQuestion } = useContext(QuestionContext);
+    const { wager } = useContext(WagerContext);
 
     const styles = {
         categoryText: {
@@ -39,6 +42,10 @@ export default function Question () {
         }
     }
 
+    useEffect(() => {
+        setLiveWager(question?.daily_double && !wager);
+    }, [question, wager, setLiveWager]);
+
     function loadQuestion() {
         API.get(trebekbotUrls.getQuestion)
             .then(res => {
@@ -50,21 +57,24 @@ export default function Question () {
 
     return (
         <div className='text-center'>
+            <DailyDoubleModal />
             <Card style={styles.card} className='text-center'>
                 <Card.Body>
                     <Card.Title style={styles.categoryText}>
-                        {question ? question.category : null}
+                        {question && !liveWager ? question.category : null}
                     </Card.Title>
                     <Card.Subtitle style={styles.categoryText}>
-                        {question ? question.value : null}
+                        {question && !liveWager ? question.value : null}
                     </Card.Subtitle>
                     <Card.Text style={styles.questionText}>
-                        {question ? question.text : null}
+                        {question && !liveWager ? question.text : null}
                     </Card.Text>
                 </Card.Body>
             </Card>
             <br></br>
-            <Button variant='primary' onClick={loadQuestion} disabled={question ? true : false}> Get Question </Button>
+            <Button variant='primary' onClick={loadQuestion} disabled={question ? true : false}> 
+                Get Question 
+            </Button>
         </div>
     );
 }       

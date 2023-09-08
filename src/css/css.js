@@ -8,5 +8,6 @@ export const font = {
     question: 'ITCKorinna',
     category: 'Swiss911',
     value: 'Swiss911',
-    score: 'UniversBlack'
+    score: 'UniversBlack',
+    dailyDouble: 'SteileFuturaBold'
 }

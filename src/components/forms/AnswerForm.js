@@ -2,19 +2,20 @@ import { useContext, useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 
-import { QuestionContext, ScoreContext, UsernameContext, TimerContext, TopTenContext } from 'App';
+import { QuestionContext, ScoreContext, UsernameContext, TimerContext, TopTenContext, WagerContext } from 'App';
 import API from 'TrebekbotAPI';
 import { trebekbotUrls } from 'TrebekbotAPI';
 
 
 export default function AnswerForm() {
 
-	const [answer, setAnswer] = useState('');
+	const [ answer, setAnswer ] = useState('');
+	const { question, setQuestion } = useContext(QuestionContext);
+	const { setScore } = useContext(ScoreContext);
 	const { setTime } = useContext(TimerContext);
 	const { setTopTen } = useContext(TopTenContext);
 	const { username } = useContext(UsernameContext);
-	const { question, setQuestion } = useContext(QuestionContext);
-	const { setScore } = useContext(ScoreContext);
+	const { wager } = useContext(WagerContext)
 
 	const styles = {
 		answerForm: {
@@ -32,7 +33,8 @@ export default function AnswerForm() {
 		e.preventDefault();
 		API.post(trebekbotUrls.judgeAnswer, {
 			userAnswer: answer,
-			questionId: question.id
+			questionId: question.id,
+			wager: wager ? wager : null
 		}).then(function (response) {
 
 			alert(response.data.text);
@@ -48,7 +50,6 @@ export default function AnswerForm() {
 		})
 	}
 
-	// TODO: disable button if question isn't live
 	return (
 		<div className='text-center'>
 			<Form style={styles.answerForm} onSubmit={handleSubmit} className='mt-3'>
@@ -56,7 +57,7 @@ export default function AnswerForm() {
 					<Form.Label>Answer</Form.Label>
 					<Form.Control type="text" value={answer} onChange={handleChange} />
 				</Form.Group>
-				<Button variant='primary' type='submit' className='text-center mb-5'>
+				<Button variant='primary' type='submit' disabled={question ? false : true} className='text-center mb-5'>
 					Submit
 				</Button>
 			</Form>

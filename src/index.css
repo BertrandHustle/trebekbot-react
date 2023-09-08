@@ -32,3 +32,10 @@ code {
    url("./fonts/UniversBlack.otf") format("opentype");
   font-weight: bold;
 }
+
+@font-face {
+  font-family: "SteileFuturaBold";
+  src: local("SteileFuturaBold"),
+   url("./fonts/SteileFuturaBold.otf") format("opentype");
+  font-weight: bold;
+}
