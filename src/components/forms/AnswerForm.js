@@ -2,7 +2,7 @@ import { useContext, useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 
-import { QuestionContext, ScoreContext, UsernameContext, TimerContext, TopTenContext, WagerContext } from 'App';
+import { QuestionContext, ScoreContext, UsernameContext, TimerContext, ToastMessageContext, TopTenContext, WagerContext } from 'App';
 import API from 'TrebekbotAPI';
 import { trebekbotUrls } from 'TrebekbotAPI';
 
@@ -13,6 +13,7 @@ export default function AnswerForm() {
 	const { question, setQuestion } = useContext(QuestionContext);
 	const { setScore } = useContext(ScoreContext);
 	const { setTime } = useContext(TimerContext);
+	const { setToastMessage } = useContext(ToastMessageContext);
 	const { setTopTen } = useContext(TopTenContext);
 	const { username } = useContext(UsernameContext);
 	const { wager } = useContext(WagerContext)
@@ -37,7 +38,8 @@ export default function AnswerForm() {
 			wager: wager ? wager : null
 		}).then(function (response) {
 
-			alert(response.data.text);
+			// TODO: fix issue where this only displays once if user guesses same answer twice in a row
+			setToastMessage(response.data.text);
 			setScore(response.data.score);
 			setTopTen(topTen => ({ ...topTen, [username]: response.data.score }))
 
