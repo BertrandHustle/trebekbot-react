@@ -1,7 +1,7 @@
 import React, { createContext, useEffect, useState } from 'react';
 
 import AnswerForm from "components/forms/AnswerForm";
-import Scoreboard from 'components/Scoreboard';
+import Scoreboard from './components/Scoreboard';
 import Question from "components/Question";
 import LoginForm from "components/forms/LoginForm";
 import LogoutButton from 'components/auth/LogoutButton';
