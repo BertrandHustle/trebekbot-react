@@ -6,7 +6,7 @@ import Card from 'react-bootstrap/Card';
 import API from 'TrebekbotAPI';
 import DailyDoubleModal from './modals/DailyDouble';
 
-import { font, palette } from './css/css';
+import { font, palette } from '/css/css';
 import { trebekbotUrls } from 'TrebekbotAPI';
 
 export default function Question () {
