@@ -1,13 +1,13 @@
 import React, { createContext, useEffect, useState } from 'react';
 
-import AnswerForm from "components/forms/AnswerForm";
+import AnswerForm from "./components/forms/AnswerForm";
 import Scoreboard from './components/Scoreboard';
-import Question from "components/Question";
-import LoginForm from "components/forms/LoginForm";
-import LogoutButton from 'components/auth/LogoutButton';
-import PlayerScorecard from 'components/PlayerScorecard';
-import Timer from 'components/Timer';
-import ToastAlert from 'components/ToastAlert';
+import Question from "./components/Question";
+import LoginForm from "./components/forms/LoginForm";
+import LogoutButton from './components/auth/LogoutButton';
+import PlayerScorecard from './components/PlayerScorecard';
+import Timer from './components/Timer';
+import ToastAlert from './components/ToastAlert';
 
 import API from 'TrebekbotAPI';
 import { trebekbotUrls } from 'TrebekbotAPI';
