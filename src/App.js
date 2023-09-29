@@ -9,8 +9,8 @@ import PlayerScorecard from './components/PlayerScorecard';
 import Timer from './components/Timer';
 import ToastAlert from './components/ToastAlert';
 
-import API from 'TrebekbotAPI';
-import { trebekbotUrls } from 'TrebekbotAPI';
+import API from './TrebekbotAPI';
+import { trebekbotUrls } from './TrebekbotAPI';
 
 const initAuthValue = JSON.parse(sessionStorage.getItem('isAuthenticated'));
 const initUsernameValue = sessionStorage.getItem('username');
