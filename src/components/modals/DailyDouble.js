@@ -4,7 +4,7 @@ import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import Modal from 'react-bootstrap/Modal';
 
-import { font, palette } from '/css/css';
+import { font, palette } from 'css/css';
 import { QuestionContext, TimerContext, ToastMessageContext, WagerContext } from 'App';
 
 export default function DailyDoubleModal() {

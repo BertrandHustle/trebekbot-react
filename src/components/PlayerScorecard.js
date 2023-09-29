@@ -1,7 +1,7 @@
 import { useContext } from 'react';
 import Card from 'react-bootstrap/Card';
 
-import { font, palette } from '/css/css';
+import { font, palette } from 'css/css';
 import { ScoreContext, UsernameContext } from 'App';
 
 export default function PlayerScorecard() {
