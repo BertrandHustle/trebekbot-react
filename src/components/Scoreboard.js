@@ -5,7 +5,7 @@ import { TopTenContext } from 'App';
 import { useContext, useEffect } from 'react';
 import { trebekbotUrls } from 'TrebekbotAPI';
 
-export default function TopTenTable() {
+export default function Scoreboard() {
 
 	const { topTen, setTopTen } = useContext(TopTenContext);
 

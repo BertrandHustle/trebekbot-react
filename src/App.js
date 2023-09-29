@@ -1,8 +1,7 @@
 import React, { createContext, useEffect, useState } from 'react';
 
 import AnswerForm from "components/forms/AnswerForm";
-import DailyDoubleModal from 'components/modals/DailyDouble';
-import TopTenTable from 'components/Scoreboard';
+import Scoreboard from 'components/Scoreboard';
 import Question from "components/Question";
 import LoginForm from "components/forms/LoginForm";
 import LogoutButton from 'components/auth/LogoutButton';
@@ -63,7 +62,7 @@ export default function App() {
 										{isAuthenticated ? <AnswerForm /> : null}
 										{isAuthenticated ? <PlayerScorecard /> : null}
 										{isAuthenticated && question ? <Timer /> : null}
-										{isAuthenticated && topTen ? <TopTenTable /> : null}
+										{isAuthenticated && topTen ? <Scoreboard /> : null}
 									</WagerContext.Provider>
 								</TopTenContext.Provider>
 							</AuthContext.Provider>	
