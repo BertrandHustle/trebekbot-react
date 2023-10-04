@@ -15,27 +15,27 @@ code {
 @font-face {
   font-family: "ITCKorinna";
   src: local("ITCKorinna"),
-   url("./fonts/ITCKorinna.otf") format("opentype");
+   url("fonts/ITCKorinna.otf") format("opentype");
   font-weight: bold;
 }
 
 @font-face {
   font-family: "Swiss911";
   src: local("Swiss911"),
-   url("./fonts/Swiss911.otf") format("opentype");
+   url("fonts/Swiss911.otf") format("opentype");
   font-weight: bold;
 }
 
 @font-face {
   font-family: "UniversBlack";
   src: local("UniversBlack"),
-   url("./fonts/UniversBlack.otf") format("opentype");
+   url("fonts/UniversBlack.otf") format("opentype");
   font-weight: bold;
 }
 
 @font-face {
   font-family: "SteileFuturaBold";
   src: local("SteileFuturaBold"),
-   url("./fonts/SteileFuturaBold.otf") format("opentype");
+   url("fonts/SteileFuturaBold.otf") format("opentype");
   font-weight: bold;
 }
