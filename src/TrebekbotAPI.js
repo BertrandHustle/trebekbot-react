@@ -1,9 +1,7 @@
 import axios from 'axios'
 
-import config from '../package.json'
-
 const trebekbotAxios = axios.create({
-  baseURL: config.proxy,
+  baseURL: process.env.REACT_APP_PROXY,
   xsrfCookieName: 'csrftoken',
   xsrfHeaderName: 'X-CSRFTOKEN',
   withCredentials: true
