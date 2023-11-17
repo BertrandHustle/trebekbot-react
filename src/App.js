@@ -36,15 +36,17 @@ export default function App() {
 	const [ wager, setWager ] = useState();
 
 	useEffect(() => {
-		API.get(trebekbotUrls.topTen)
+		if (isAuthenticated) {
+			API.get(trebekbotUrls.topTen)
 			.then((response) => {
 				setTopTen(response.data);
 			});
-		API.get(trebekbotUrls.score)
-			.then((response) => {
-				setScore(response.data);
-		});
-	}, []);
+			API.get(trebekbotUrls.score)
+				.then((response) => {
+					setScore(response.data);
+			});	
+			}
+	}, [isAuthenticated]);
 
 	return (
 		<ToastMessageContext.Provider value={{ toastMessage, setToastMessage }}>
