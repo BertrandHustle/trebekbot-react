@@ -4,7 +4,8 @@ const trebekbotAxios = axios.create({
   baseURL: process.env.REACT_APP_PROXY,
   xsrfCookieName: 'csrftoken',
   xsrfHeaderName: 'X-CSRFTOKEN',
-  withCredentials: true
+  withCredentials: true,
+  withXSRFToken: true
 });
 
 export const trebekbotUrls = {
