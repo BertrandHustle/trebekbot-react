@@ -38,7 +38,7 @@ export default function LoginForm() {
           }
         })
         .then((resp) => {
-          axios.defaults.headers.common['X-CSRF-TOKEN'] = Cookies.get('csrftoken');
+          axios.defaults.headers.common['X-CSRFTOKEN'] = Cookies.get('csrftoken');
           sessionStorage.setItem('isAuthenticated', true);
           sessionStorage.setItem('username', uname);
           setIsAuthenticated(true);
