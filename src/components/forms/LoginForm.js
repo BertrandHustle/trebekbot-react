@@ -38,7 +38,7 @@ export default function LoginForm() {
         })
         .then((resp) => {
           API.defaults.headers.common['X-CSRFTOKEN'] = Cookies.get('csrftoken');
-          console.log(Cookies.get('csrftoken'));
+          console.log(Cookies.get());
           sessionStorage.setItem('isAuthenticated', true);
           sessionStorage.setItem('username', uname);
           setIsAuthenticated(true);
@@ -57,7 +57,6 @@ export default function LoginForm() {
     function handleLogin (e) {
         e.preventDefault();
         login(e, formUsername, formPassword);
-        console.log(Cookies.get('csrftoken'));
     }
 
     return (
