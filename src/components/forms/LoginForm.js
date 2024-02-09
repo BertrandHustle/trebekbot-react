@@ -15,6 +15,7 @@ export default function LoginForm() {
     const [ formUsername, setFormUsername ] = useState('');
     const [ formPassword, setFormPassword ] = useState('');
     const [ error, setError ] = useState('');
+    const cookies = new Cookies(null, { path: '/' });
 
     const styles = {
       loginForm: {
@@ -38,7 +39,7 @@ export default function LoginForm() {
           }
         })
         .then((resp) => {
-          axios.defaults.headers.common['X-CSRFTOKEN'] = Cookies.get('csrftoken');
+          axios.defaults.headers.common['X-CSRFTOKEN'] = cookies.get('csrftoken');
           sessionStorage.setItem('isAuthenticated', true);
           sessionStorage.setItem('username', uname);
           setIsAuthenticated(true);
