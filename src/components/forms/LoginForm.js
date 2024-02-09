@@ -37,8 +37,8 @@ export default function LoginForm() {
           }
         })
         .then((resp) => {
-          API.defaults.headers.common['X-CSRFTOKEN'] = Cookies.get('csrftoken');
-          console.log(Cookies.get());
+          API.defaults.headers.common['X-CSRFTOKEN'] = document.getElementById('csrftoken');
+          console.log(document.getElementById('csrftoken'));
           sessionStorage.setItem('isAuthenticated', true);
           sessionStorage.setItem('username', uname);
           setIsAuthenticated(true);
