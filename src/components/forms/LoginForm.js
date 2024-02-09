@@ -15,7 +15,7 @@ export default function LoginForm() {
     const [ formUsername, setFormUsername ] = useState('');
     const [ formPassword, setFormPassword ] = useState('');
     const [ error, setError ] = useState('');
-    const cookies = new Cookies(null, { path: '/' });
+    const cookies = Cookies(req.headers.cookie, { path: '/' });
 
     const styles = {
       loginForm: {
