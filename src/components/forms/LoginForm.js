@@ -1,6 +1,5 @@
 import { useContext, useState } from 'react';
 
-import axios from 'axios'
 import Cookies from 'universal-cookie';
 
 import { AuthContext, ToastMessageContext, UsernameContext } from 'App';
@@ -15,7 +14,6 @@ export default function LoginForm() {
     const [ formUsername, setFormUsername ] = useState('');
     const [ formPassword, setFormPassword ] = useState('');
     const [ error, setError ] = useState('');
-    const cookies = Cookies(req.headers.cookie, { path: '/' });
 
     const styles = {
       loginForm: {
@@ -39,6 +37,7 @@ export default function LoginForm() {
           }
         })
         .then((resp) => {
+          const cookies = Cookies(resp.headers.cookie, { path: '/' });
           API.defaults.headers.common['X-CSRFTOKEN'] = cookies.get('csrftoken');
           sessionStorage.setItem('isAuthenticated', true);
           sessionStorage.setItem('username', uname);
