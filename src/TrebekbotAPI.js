@@ -3,7 +3,7 @@ import axios from 'axios'
 export default axios.create({
   baseURL: process.env.REACT_APP_PROXY,
   xsrfCookieName: 'csrftoken',
-  xsrfHeaderName: 'X-CSRFToken',
+  xsrfHeaderName: 'X-CSRFTOKEN',
   withCredentials: true,
   withXSRFToken: true
 });
