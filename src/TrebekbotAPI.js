@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-const trebekbotAxios = axios.create({
+export default axios.create({
   baseURL: process.env.REACT_APP_PROXY,
   xsrfCookieName: 'csrftoken',
   xsrfHeaderName: 'X-CSRFTOKEN',
@@ -16,4 +16,3 @@ export const trebekbotUrls = {
   'score': '/game/score'
 }
 
-export default trebekbotAxios;
