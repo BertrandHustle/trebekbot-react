@@ -1,5 +1,10 @@
 import axios from 'axios'
 
+axios.defaults.xsrfCookieName = 'csrftoken';
+axios.defaults.xsrfHeaderName = "X-CSRFToken";
+axios.defaults.withCredentials = true;
+axios.defaults.withXSRFToken = true;
+
 export default axios.create({
   baseURL: process.env.REACT_APP_PROXY,
   xsrfCookieName: 'csrfmiddlewaretoken',
