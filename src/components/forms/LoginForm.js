@@ -1,8 +1,9 @@
 import { useContext, useState } from 'react';
 
-import Cookies from 'js-cookie';
+//import Cookies from 'js-cookie';
 
 import { AuthContext, ToastMessageContext, UsernameContext } from 'App';
+// import this as trebekbotAxios instead?
 import API from 'TrebekbotAPI';
 import { trebekbotUrls } from 'TrebekbotAPI';
 
@@ -37,8 +38,8 @@ export default function LoginForm() {
           }
         })
         .then((resp) => {
-          API.defaults.headers.common['X-CSRFTOKEN'] = document.getElementById('csrftoken');
-          console.log(document.getElementById('csrftoken'));
+          //API.defaults.headers.common['X-CSRFTOKEN'] = Cookies.get('csrftoken');
+          console.log(Cookies.get());
           sessionStorage.setItem('isAuthenticated', true);
           sessionStorage.setItem('username', uname);
           setIsAuthenticated(true);
