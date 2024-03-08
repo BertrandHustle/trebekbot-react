@@ -1,7 +1,5 @@
 import { useContext, useState } from 'react';
 
-import { cookie } from 'react-cookie'
-
 import { AuthContext, ToastMessageContext, UsernameContext } from 'App';
 import API from 'TrebekbotAPI';
 import { trebekbotUrls } from 'TrebekbotAPI';
@@ -37,9 +35,6 @@ export default function LoginForm() {
           }
         })
         .then((resp) => {
-          //API.defaults.headers.common['X-CSRFTOKEN'] = Cookies.get('csrftoken');
-          let csrfCookie = cookie.load('csrftoken');
-          console.log(csrfCookie);
           sessionStorage.setItem('isAuthenticated', true);
           sessionStorage.setItem('username', uname);
           setIsAuthenticated(true);
