@@ -46,7 +46,7 @@ export default function LoginForm() {
             console.log('NEW USER');
             setToastMessage("New user created! Thanks for signing up for Trebekbot.");
           }
-          let csrftoken = Cookies.get('csrfcookiename');
+          let csrftoken = Cookies.get('csrftoken');
           console.log(csrftoken);
           axios.defaults.headers.common['X-CSRFToken'] = csrftoken;
         })
