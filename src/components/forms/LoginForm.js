@@ -1,5 +1,6 @@
 import { useContext, useState } from 'react';
 
+import axios from 'axios';
 import Cookies from 'js-cookie';
 
 import { AuthContext, ToastMessageContext, UsernameContext } from 'App';
