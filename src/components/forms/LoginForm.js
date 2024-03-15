@@ -1,5 +1,7 @@
 import { useContext, useState } from 'react';
 
+import Cookies from 'js-cookie';
+
 import { AuthContext, ToastMessageContext, UsernameContext } from 'App';
 import API from 'TrebekbotAPI';
 import { trebekbotUrls } from 'TrebekbotAPI';
@@ -43,6 +45,9 @@ export default function LoginForm() {
             console.log('NEW USER');
             setToastMessage("New user created! Thanks for signing up for Trebekbot.");
           }
+          let csrftoken = Cookies.get('csrfcookiename');
+          console.log(csrftoken);
+          axios.defaults.headers.common['X-CSRFToken'] = csrftoken;
         })
         .catch((err) => {
           console.log(err);
