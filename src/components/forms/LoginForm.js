@@ -1,8 +1,5 @@
 import { useContext, useState } from 'react';
 
-import axios from 'axios';
-import Cookies from 'js-cookie';
-
 import { AuthContext, ToastMessageContext, UsernameContext } from 'App';
 import API from 'TrebekbotAPI';
 import { trebekbotUrls } from 'TrebekbotAPI';
@@ -46,7 +43,6 @@ export default function LoginForm() {
             console.log('NEW USER');
             setToastMessage("New user created! Thanks for signing up for Trebekbot.");
           }
-          console.log(document.cookie);
         })
         .catch((err) => {
           console.log(err);
