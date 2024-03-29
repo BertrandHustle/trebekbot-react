@@ -16,7 +16,7 @@ export default function AnswerForm() {
 	const { setToastMessage } = useContext(ToastMessageContext);
 	const { setTopTen } = useContext(TopTenContext);
 	const { username } = useContext(UsernameContext);
-	const { wager } = useContext(WagerContext)
+	const { wager, setWager } = useContext(WagerContext)
 
 	const styles = {
 		answerForm: {
@@ -38,7 +38,6 @@ export default function AnswerForm() {
 			wager: wager ? wager : null
 		}).then(function (response) {
 
-			// TODO: fix issue where this only displays once if user guesses same answer twice in a row
 			setToastMessage(response.data.text);
 			setScore(response.data.score);
 			setTopTen(topTen => ({ ...topTen, [username]: response.data.score }))
@@ -46,6 +45,7 @@ export default function AnswerForm() {
 			let result = response.data.result;
 			// if question is answered correctly
 			if (result === true) {
+				setWager(0);
 				setTime(0);
 				setQuestion();
 			}
