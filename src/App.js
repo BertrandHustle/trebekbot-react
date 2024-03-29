@@ -24,8 +24,6 @@ export const TopTenContext = createContext();
 export const UsernameContext = createContext(initUsernameValue);
 export const WagerContext = createContext();
 
-// TODO: change React to use Prod Build
-
 export default function App() {
 
 	const [ isAuthenticated, setIsAuthenticated ] = useState(initAuthValue);

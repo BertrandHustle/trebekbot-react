@@ -5,13 +5,14 @@ import Form from 'react-bootstrap/Form';
 import Modal from 'react-bootstrap/Modal';
 
 import { font, palette } from 'css/css';
-import { QuestionContext, TimerContext, ToastMessageContext, WagerContext } from 'App';
+import { QuestionContext, ScoreContext, TimerContext, ToastMessageContext, WagerContext } from 'App';
 
 export default function DailyDoubleModal() {
 
     const [ wagerField, setWagerField ] = useState(0);
 
     const { question } = useContext(QuestionContext);
+    const { score } = useContext(ScoreContext);
     const { setTime } = useContext(TimerContext);
     const { setToastMessage } = useContext(ToastMessageContext);
     const { wager, setWager } = useContext(WagerContext); 
@@ -39,18 +40,25 @@ export default function DailyDoubleModal() {
     }
 
     const handleChange = (e) => {
-        if (e.target.value <= 0) {
-            setToastMessage('Wagers must be more than 0!');
-        }
-        else {
-            setWagerField(e.target.value);
-        }
+        setWagerField(+e.target.value);
 	}
 
     const submitWager = (e) => {
         e.preventDefault();
-        setWager(wagerField);
-        setTime(60);
+        let maxWager = score >= 1000 ? score : 1000;
+        if (isNaN(wagerField)){
+            setToastMessage('Wager must be a number!');
+        }
+        else if (wagerField <= 5) {
+            setToastMessage('Wager must be at least $5!');
+        }
+        else if (wagerField > maxWager) {
+            setToastMessage(`Wager cannot be more than ${maxWager}!`);
+        }
+        else {
+            setWager(wagerField);
+            setTime(60);
+        }
     }
 
     return (
@@ -62,7 +70,7 @@ export default function DailyDoubleModal() {
             <Modal.Body>
                 <Form.Group className='mb-3'>
                     <Form.Label>Please enter a wager</Form.Label>
-                    <Form.Control type="text" onChange={handleChange} value={wagerField}/>
+                    <Form.Control min='5' max={score >= 1000 ? score : 1000} type='number' onChange={handleChange} value={wagerField}/>
                 </Form.Group>
             </Modal.Body>
             <Modal.Footer>

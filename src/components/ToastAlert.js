@@ -6,7 +6,9 @@ import { ToastContainer } from 'react-bootstrap';
 
 export default function ToastAlert() {
 
+    // TODO: add dummy state for reloading toast
     const { toastMessage } = useContext(ToastMessageContext);
+    //const [ rerender, triggerRerender ] = useState(0);
     const [ show, setShow ] = useState(false);
 
     useEffect(() => {

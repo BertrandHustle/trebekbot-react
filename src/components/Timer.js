@@ -1,9 +1,10 @@
 import React, {useContext, useEffect} from 'react';
 import ProgressBar from 'react-bootstrap/ProgressBar';
 
-import { QuestionContext, TimerContext } from 'App';
+import { QuestionContext, TimerContext, WagerContext } from 'App';
 
 export default function Timer () {
+    const { wager, setWager } = useContext(WagerContext);
     const { setQuestion } = useContext(QuestionContext);
     const { time, setTime } = useContext(TimerContext);
 
@@ -25,12 +26,15 @@ export default function Timer () {
         }, 1000);
 
         if (time === 0) {
+            if (wager) {
+                setWager(0);
+            }
             clearInterval(timer);
             setQuestion();
         }
         
         return () => clearInterval(timer);
-    }, [setQuestion, time, setTime]);
+    }, [setQuestion, time, setTime, wager, setWager]);
 
     return(
         <ProgressBar now={time * -1} max={0} min={-60} style={styles.questionTimer}/>
