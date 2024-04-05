@@ -6,18 +6,21 @@ import { ToastContainer } from 'react-bootstrap';
 
 export default function ToastAlert() {
 
-    // TODO: add dummy state for reloading toast
-    const { toastMessage } = useContext(ToastMessageContext);
-    //const [ rerender, triggerRerender ] = useState(0);
+    const { toastMessage, setToastMessage } = useContext(ToastMessageContext);
     const [ show, setShow ] = useState(false);
 
     useEffect(() => {
         setShow(true);
     }, [toastMessage])
 
+    const closeToast = (e) => {
+        setShow(false);
+        setToastMessage('');
+    }
+
     return (
         <ToastContainer className="p-3" position='top-center' style={{ zIndex: 1 }}>
-            <Toast onClose={() => setShow(false)} show={show} delay={3000} autohide>
+            <Toast onClose={closeToast} show={show} delay={3000} autohide>
                 <Toast.Body>
                     { toastMessage }
                 </Toast.Body>
