@@ -49,7 +49,7 @@ export default function DailyDoubleModal() {
         if (isNaN(wagerField)){
             setToastMessage('Wager must be a number!');
         }
-        else if (wagerField <= 5) {
+        else if (wagerField < 5) {
             setToastMessage('Wager must be at least $5!');
         }
         else if (wagerField > maxWager) {

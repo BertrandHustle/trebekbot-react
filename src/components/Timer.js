@@ -1,6 +1,7 @@
 import React, {useContext, useEffect} from 'react';
-import ProgressBar from 'react-bootstrap/ProgressBar';
 
+import { font } from 'css/css';
+import TimerLight from './TimerLight';
 import { QuestionContext, TimerContext, WagerContext } from 'App';
 
 export default function Timer () {
@@ -8,15 +9,10 @@ export default function Timer () {
     const { setQuestion } = useContext(QuestionContext);
     const { time, setTime } = useContext(TimerContext);
 
-    const styles = {
-        questionTimer: {
-            width: '50rem',
-            margin: 'auto',
-            marginTop: 5,
-        },
-        remainingTime: {
-            
-        }
+    const style = {
+        fontFamily: font.score,
+        fontSize: '300%',
+        marginBottom: '2rem'
     }
 
     useEffect(() => {
@@ -36,7 +32,24 @@ export default function Timer () {
         return () => clearInterval(timer);
     }, [setQuestion, time, setTime, wager, setWager]);
 
+    // nine lights for timer
+
     return(
-        <ProgressBar now={time * -1} max={0} min={-60} style={styles.questionTimer}/>
+        <div className='text-center'>
+            <div style={style}>
+                {time}
+            </div>
+            <div>
+                <TimerLight activationPercentage={80}/>
+                <TimerLight activationPercentage={60}/>
+                <TimerLight activationPercentage={40}/>
+                <TimerLight activationPercentage={20}/>
+                <TimerLight activationPercentage={0}/>
+                <TimerLight activationPercentage={20}/>
+                <TimerLight activationPercentage={40}/>
+                <TimerLight activationPercentage={60}/>
+                <TimerLight activationPercentage={80}/>
+            </div>
+        </div>
     )
 }
