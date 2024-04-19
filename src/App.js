@@ -15,6 +15,10 @@ import { trebekbotUrls } from 'TrebekbotAPI';
 const initAuthValue = JSON.parse(sessionStorage.getItem('isAuthenticated'));
 const initUsernameValue = sessionStorage.getItem('username');
 
+//conf
+export const questionTotalTime = 60;
+export const dailyDoubleTotalTime = 60;
+
 export const AuthContext = createContext(initAuthValue);
 export const QuestionContext = createContext();
 export const ScoreContext = createContext();
@@ -62,8 +66,8 @@ export default function App() {
 										{isAuthenticated ? <LogoutButton /> : null}
 										{isAuthenticated ? <Question /> : null}
 										{isAuthenticated ? <AnswerForm /> : null}
-										{isAuthenticated ? <PlayerScorecard /> : null}
 										{isAuthenticated && question ? <Timer /> : null}
+										{isAuthenticated ? <PlayerScorecard /> : null}
 										{isAuthenticated && topTen ? <Scoreboard /> : null}
 									</WagerContext.Provider>
 								</TopTenContext.Provider>
