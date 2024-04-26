@@ -1,7 +1,7 @@
 import React, {useContext, useEffect} from 'react';
 
 import { font } from 'css/css';
-import TimerLight from 'components/TimerLight';
+import TimerLight from './TimerLight';
 import { QuestionContext, TimerContext, WagerContext } from 'App';
 
 export default function Timer () {
