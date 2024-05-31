@@ -4,6 +4,7 @@ import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 
 import API from 'TrebekbotAPI';
+import AudioClue from './AudioClue';
 import DailyDoubleModal from './modals/DailyDouble';
 
 import { font, palette } from 'css/css';
@@ -14,6 +15,8 @@ export default function Question () {
     const [ liveWager, setLiveWager ] = useState();
     const { setTime } = useContext(TimerContext);
     const { question, setQuestion } = useContext(QuestionContext);
+    const [ audioLinks, setAudioLinks ] = useState([]);
+    const [ visualLinks, setVisualLinks ] = useState([]);
     const { wager } = useContext(WagerContext);
 
     const styles = {
@@ -48,8 +51,18 @@ export default function Question () {
     function loadQuestion() {
         API.get(trebekbotUrls.getQuestion)
             .then(res => {
+                let parsedData = JSON.parse(res.data);
+                console.log(parsedData.valid_links);
                 setTime(60);
-                setQuestion(JSON.parse(res.data));
+                setQuestion(parsedData);
+                parsedData.valid_links.forEach(link => {
+                    if (link.endsWith('.wav') || link.endsWith('.mp3')) {
+                        setAudioLinks([...audioLinks, link]);
+                    }
+                    if (link.endsWith('.jpg')) {
+                        setVisualLinks([...visualLinks, link]);
+                    }
+                });
             }
         )
     };
@@ -72,6 +85,10 @@ export default function Question () {
                         {question && !liveWager ? question.text : null}
                     </Card.Text>
                 </Card.Body>
+                <Card.Footer style={styles.questionText}>
+                    {question && visualLinks && !liveWager ? visualLinks.map(function(link){return (<img alt='visual link' src={link}/>); }) : null}
+                    {question && audioLinks && !liveWager ? audioLinks.map(function(link){return (<audio controls preload='auto' src={link}></audio>); }) : null}
+                </Card.Footer>
             </Card>
             <br></br>
             <Button variant='primary' onClick={loadQuestion} disabled={question ? true : false}> 
