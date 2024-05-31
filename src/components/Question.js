@@ -4,7 +4,6 @@ import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 
 import API from 'TrebekbotAPI';
-import AudioClue from './AudioClue';
 import DailyDoubleModal from './modals/DailyDouble';
 
 import { font, palette } from 'css/css';
@@ -25,6 +24,9 @@ export default function Question () {
             color: palette.categoryText,
             fontSize: '300%',
 	        textAlign: 'center',
+        },
+        visualLink: {
+            width: '30vw'
         },
         questionText: {
             fontFamily: font.question,
@@ -52,9 +54,10 @@ export default function Question () {
         API.get(trebekbotUrls.getQuestion)
             .then(res => {
                 let parsedData = JSON.parse(res.data);
-                console.log(parsedData.valid_links);
                 setTime(60);
                 setQuestion(parsedData);
+                setAudioLinks([]);
+                setVisualLinks([]);
                 parsedData.valid_links.forEach(link => {
                     if (link.endsWith('.wav') || link.endsWith('.mp3')) {
                         setAudioLinks([...audioLinks, link]);
@@ -63,6 +66,9 @@ export default function Question () {
                         setVisualLinks([...visualLinks, link]);
                     }
                 });
+                console.log(parsedData.valid_links);
+                console.log(audioLinks);
+                console.log(visualLinks);
             }
         )
     };
@@ -85,9 +91,9 @@ export default function Question () {
                         {question && !liveWager ? question.text : null}
                     </Card.Text>
                 </Card.Body>
-                <Card.Footer style={styles.questionText}>
-                    {question && visualLinks && !liveWager ? visualLinks.map(function(link){return (<img alt='visual link' src={link}/>); }) : null}
-                    {question && audioLinks && !liveWager ? audioLinks.map(function(link){return (<audio controls preload='auto' src={link}></audio>); }) : null}
+                <Card.Footer>
+                    {question && visualLinks && !liveWager ? visualLinks.map(link => <img key={link} style={styles.visualLink} alt='visual link' src={link}/>) : null}
+                    {question && audioLinks && !liveWager ? audioLinks.map(link => <audio controls preload='auto' key={link} src={link}></audio>) : null}
                 </Card.Footer>
             </Card>
             <br></br>
