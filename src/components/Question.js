@@ -50,22 +50,29 @@ export default function Question () {
         setLiveWager(question?.daily_double && !wager);
     }, [question, wager, setLiveWager]);
 
+    function arrayAudioVisualLinks(links) {
+        let audioLinkArray = [];
+        let visualLinkArray = [];
+        links.forEach(link => {
+            if (link.endsWith('.wav') || link.endsWith('.mp3')) {
+                audioLinkArray.push(link);
+            }
+            if (link.endsWith('.jpg')) {
+                visualLinkArray.push(link);
+            }
+        });
+        return [audioLinkArray, visualLinkArray];
+    };
+
     function loadQuestion() {
         API.get(trebekbotUrls.getQuestion)
             .then(res => {
                 let parsedData = JSON.parse(res.data);
                 setTime(60);
                 setQuestion(parsedData);
-                setAudioLinks([]);
-                setVisualLinks([]);
-                parsedData.valid_links.forEach(link => {
-                    if (link.endsWith('.wav') || link.endsWith('.mp3')) {
-                        setAudioLinks([...audioLinks, link]);
-                    }
-                    if (link.endsWith('.jpg')) {
-                        setVisualLinks([...visualLinks, link]);
-                    }
-                });
+                let [audioLinkArray, visualLinkArray] = arrayAudioVisualLinks(parsedData.valid_links);
+                setAudioLinks(audioLinkArray);
+                setVisualLinks(visualLinkArray);
                 console.log(parsedData.valid_links);
                 console.log(audioLinks);
                 console.log(visualLinks);

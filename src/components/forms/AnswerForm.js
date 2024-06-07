@@ -57,6 +57,7 @@ export default function AnswerForm() {
 			<Form style={styles.answerForm} onSubmit={handleSubmit} className='mt-3'>
 				<Form.Group className='mb-3'>
 					<Form.Label>Answer</Form.Label>
+					{/* TODO: null this on correct answer */} 
 					<Form.Control type="text" value={answer} onChange={handleChange} />
 				</Form.Group>
 				<Button variant='primary' type='submit' disabled={question ? false : true} className='text-center mb-5'>
