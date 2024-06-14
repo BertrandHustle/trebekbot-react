@@ -19,7 +19,6 @@ export default function LogoutButton() {
 	function logout() {
 		API.post("/game/logout/")
 			.then((data) => {
-				console.log(data);
 				sessionStorage.setItem('isAuthenticated', false);
 				sessionStorage.removeItem('username');
 				setIsAuthenticated(false);

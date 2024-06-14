@@ -14,6 +14,8 @@ export default function Question () {
     const [ liveWager, setLiveWager ] = useState();
     const { setTime } = useContext(TimerContext);
     const { question, setQuestion } = useContext(QuestionContext);
+    const [ audioLinks, setAudioLinks ] = useState([]);
+    const [ visualLinks, setVisualLinks ] = useState([]);
     const { wager } = useContext(WagerContext);
 
     const styles = {
@@ -22,6 +24,9 @@ export default function Question () {
             color: palette.categoryText,
             fontSize: '300%',
 	        textAlign: 'center',
+        },
+        visualLink: {
+            width: '30vw'
         },
         questionText: {
             fontFamily: font.question,
@@ -45,11 +50,29 @@ export default function Question () {
         setLiveWager(question?.daily_double && !wager);
     }, [question, wager, setLiveWager]);
 
+    function arrayAudioVisualLinks(links) {
+        let audioLinkArray = [];
+        let visualLinkArray = [];
+        links.forEach(link => {
+            if (link.endsWith('.wav') || link.endsWith('.mp3')) {
+                audioLinkArray.push(link);
+            }
+            if (link.endsWith('.jpg')) {
+                visualLinkArray.push(link);
+            }
+        });
+        return [audioLinkArray, visualLinkArray];
+    };
+
     function loadQuestion() {
         API.get(trebekbotUrls.getQuestion)
             .then(res => {
+                let parsedData = JSON.parse(res.data);
                 setTime(60);
-                setQuestion(JSON.parse(res.data));
+                setQuestion(parsedData);
+                let [audioLinkArray, visualLinkArray] = arrayAudioVisualLinks(parsedData.valid_links);
+                setAudioLinks(audioLinkArray);
+                setVisualLinks(visualLinkArray);
             }
         )
     };
@@ -72,6 +95,10 @@ export default function Question () {
                         {question && !liveWager ? question.text : null}
                     </Card.Text>
                 </Card.Body>
+                <Card.Footer>
+                    {question && visualLinks && !liveWager ? visualLinks.map(link => <img key={link} style={styles.visualLink} alt='visual link' src={link}/>) : null}
+                    {question && audioLinks && !liveWager ? audioLinks.map(link => <audio controls preload='auto' key={link} src={link}></audio>) : null}
+                </Card.Footer>
             </Card>
             <br></br>
             <Button variant='primary' onClick={loadQuestion} disabled={question ? true : false}> 
