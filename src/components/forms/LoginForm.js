@@ -40,7 +40,6 @@ export default function LoginForm() {
           setIsAuthenticated(true);
           setUsername(uname);
           if (resp.data.new) {
-            console.log('NEW USER');
             setToastMessage("New user created! Thanks for signing up for Trebekbot.");
           }
         })

@@ -73,9 +73,6 @@ export default function Question () {
                 let [audioLinkArray, visualLinkArray] = arrayAudioVisualLinks(parsedData.valid_links);
                 setAudioLinks(audioLinkArray);
                 setVisualLinks(visualLinkArray);
-                console.log(parsedData.valid_links);
-                console.log(audioLinks);
-                console.log(visualLinks);
             }
         )
     };
@@ -94,7 +91,7 @@ export default function Question () {
                     <Card.Subtitle style={styles.categoryText}>
                         {question && !liveWager && wager ? wager : null}
                     </Card.Subtitle>
-                    <Card.Text style={styles.questionText}>
+                    <Card.Text style={styles.questionText}>{question && audioLinks && !liveWager ? audioLinks.map(link => <audio controls preload='auto' key={link} src={link}></audio>) : null}
                         {question && !liveWager ? question.text : null}
                     </Card.Text>
                 </Card.Body>
