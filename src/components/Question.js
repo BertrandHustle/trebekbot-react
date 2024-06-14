@@ -91,7 +91,7 @@ export default function Question () {
                     <Card.Subtitle style={styles.categoryText}>
                         {question && !liveWager && wager ? wager : null}
                     </Card.Subtitle>
-                    <Card.Text style={styles.questionText}>{question && audioLinks && !liveWager ? audioLinks.map(link => <audio controls preload='auto' key={link} src={link}></audio>) : null}
+                    <Card.Text style={styles.questionText}>
                         {question && !liveWager ? question.text : null}
                     </Card.Text>
                 </Card.Body>
