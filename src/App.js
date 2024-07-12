@@ -16,6 +16,7 @@ const initAuthValue = JSON.parse(sessionStorage.getItem('isAuthenticated'));
 const initQuestionId = sessionStorage.getItem('questionId');
 const initTimer = sessionStorage.getItem('timer');
 const initUsernameValue = sessionStorage.getItem('username');
+const initWager = sessionStorage.getItem('wager');
 
 //conf
 export const questionTotalTime = 60;
@@ -28,7 +29,7 @@ export const TimerContext = createContext(initTimer);
 export const ToastMessageContext = createContext();
 export const TopTenContext = createContext();
 export const UsernameContext = createContext(initUsernameValue);
-export const WagerContext = createContext();
+export const WagerContext = createContext(initWager);
 
 export default function App() {
 
@@ -36,10 +37,10 @@ export default function App() {
 	const [ username, setUsername ] = useState(initUsernameValue);
 	const [ question, setQuestion ] = useState();
 	const [ score, setScore ] = useState();
-	const [ time, setTime ] = useState();
+	const [ time, setTime ] = useState(initTimer);
 	const [ topTen, setTopTen ] = useState();
 	const [ toastMessage, setToastMessage ] = useState();
-	const [ wager, setWager ] = useState();
+	const [ wager, setWager ] = useState(initWager);
 
 	useEffect(() => {
 		if (isAuthenticated) {
@@ -56,12 +57,7 @@ export default function App() {
 			API.post(trebekbotUrls.question, {"questionId": initQuestionId})
 				.then((response) => {
 					setQuestion(JSON.parse(response.data));
-					setTime(initTimer);
 				});
-		}
-		else {
-            sessionStorage.setItem('timer', 0);
-            sessionStorage.setItem('questionId', null);
 		}
 	}, [isAuthenticated]);
 

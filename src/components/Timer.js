@@ -30,6 +30,7 @@ export default function Timer () {
             setQuestion();
             sessionStorage.setItem('timer', 0);
             sessionStorage.setItem('questionId', null);
+            sessionStorage.setItem('wager', 0);
         }
         
         return () => clearInterval(timer);

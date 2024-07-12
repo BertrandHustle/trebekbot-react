@@ -58,6 +58,7 @@ export default function DailyDoubleModal() {
         else {
             setWager(wagerField);
             setTime(60);
+            sessionStorage.setItem('wager', wagerField);
         }
     }
 
