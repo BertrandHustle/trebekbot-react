@@ -19,6 +19,7 @@ export default function Timer () {
 
         const timer = setInterval(() => {
             setTime(time - 1);
+            sessionStorage.setItem('timer', time);
         }, 1000);
 
         if (time === 0) {
@@ -27,6 +28,8 @@ export default function Timer () {
             }
             clearInterval(timer);
             setQuestion();
+            sessionStorage.setItem('timer', 0);
+            sessionStorage.setItem('questionId', null);
         }
         
         return () => clearInterval(timer);

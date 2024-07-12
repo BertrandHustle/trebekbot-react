@@ -13,6 +13,8 @@ import API from 'TrebekbotAPI';
 import { trebekbotUrls } from 'TrebekbotAPI';
 
 const initAuthValue = JSON.parse(sessionStorage.getItem('isAuthenticated'));
+const initQuestionId = sessionStorage.getItem('questionId');
+const initTimer = sessionStorage.getItem('timer');
 const initUsernameValue = sessionStorage.getItem('username');
 
 //conf
@@ -22,7 +24,7 @@ export const dailyDoubleTotalTime = 60;
 export const AuthContext = createContext(initAuthValue);
 export const QuestionContext = createContext();
 export const ScoreContext = createContext();
-export const TimerContext = createContext();
+export const TimerContext = createContext(initTimer);
 export const ToastMessageContext = createContext();
 export const TopTenContext = createContext();
 export const UsernameContext = createContext(initUsernameValue);
@@ -42,14 +44,25 @@ export default function App() {
 	useEffect(() => {
 		if (isAuthenticated) {
 			API.get(trebekbotUrls.topTen)
-			.then((response) => {
-				setTopTen(response.data);
-			});
+				.then((response) => {
+					setTopTen(response.data);
+				});
 			API.get(trebekbotUrls.score)
 				.then((response) => {
 					setScore(response.data);
-			});	
-			}
+				});	
+		}
+		if (initTimer && initQuestionId) {
+			API.post(trebekbotUrls.question, {"questionId": initQuestionId})
+				.then((response) => {
+					setQuestion(JSON.parse(response.data));
+					setTime(initTimer);
+				});
+		}
+		else {
+            sessionStorage.setItem('timer', 0);
+            sessionStorage.setItem('questionId', null);
+		}
 	}, [isAuthenticated]);
 
 	return (

@@ -65,7 +65,7 @@ export default function Question () {
     };
 
     function loadQuestion() {
-        API.get(trebekbotUrls.getQuestion)
+        API.get(trebekbotUrls.question)
             .then(res => {
                 let parsedData = JSON.parse(res.data);
                 setTime(60);
@@ -73,6 +73,7 @@ export default function Question () {
                 let [audioLinkArray, visualLinkArray] = arrayAudioVisualLinks(parsedData.valid_links);
                 setAudioLinks(audioLinkArray);
                 setVisualLinks(visualLinkArray);
+                sessionStorage.setItem('questionId', parsedData.id);
             }
         )
     };
