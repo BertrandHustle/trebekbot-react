@@ -48,6 +48,8 @@ export default function AnswerForm() {
 				setWager(0);
 				setTime(0);
 				setQuestion();
+				sessionStorage.setItem('timer', 0);
+				sessionStorage.setItem('questionId', null);
 			}
 		})
 	}

@@ -11,8 +11,7 @@ export default axios.create({
 export const trebekbotUrls = {
   'judgeAnswer': '/game/judge/',
   'login': '/game/login/',
-  'getQuestion': '/game/question/',
+  'question': '/game/question/',
   'topTen': '/game/topten/',
   'score': '/game/score'
 }
-
