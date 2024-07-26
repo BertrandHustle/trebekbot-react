@@ -13,10 +13,10 @@ import API from 'TrebekbotAPI';
 import { trebekbotUrls } from 'TrebekbotAPI';
 
 const initAuthValue = JSON.parse(sessionStorage.getItem('isAuthenticated'));
-const initQuestionId = sessionStorage.getItem('questionId');
-const initTimer = sessionStorage.getItem('timer');
+const initQuestionId = JSON.parse(sessionStorage.getItem('questionId'));
+const initTimer = JSON.parse(sessionStorage.getItem('timer'));
 const initUsernameValue = sessionStorage.getItem('username');
-const initWager = sessionStorage.getItem('wager');
+const initWager = JSON.parse(sessionStorage.getItem('wager'));
 
 //conf
 export const questionTotalTime = 60;
