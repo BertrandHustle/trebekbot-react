@@ -21,6 +21,11 @@ export default function LoginForm() {
       },
       loginButton: {
         marginTop: 5
+      },
+      helpCard: {
+        position: 'absolute',
+        top: 0,
+        left: '5rem'
       }
     }
 
@@ -81,6 +86,24 @@ export default function LoginForm() {
               <button type="submit" className="btn btn-primary text-center">Login</button>
             </div>
           </form>
+
+          <div style={styles.helpCard} className='card mt-5 w-25 mx-auto bg-primary-subtle text-body-emphasis'>
+            <div className='form-text'>
+              <h5 className='text-center'>
+                New Players: 
+              </h5>
+              <h6 className='text-center'>
+                enter username & password to create an account
+              </h6>
+              <h5 className='text-center'>
+                Existing Players:
+              </h5>
+              <h6 className='text-center'>
+                enter username & password to log in
+              </h6>
+            </div>
+          </div>
+          
         </div>
     );
   }
