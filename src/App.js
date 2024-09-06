@@ -1,11 +1,11 @@
 import React, { createContext, useEffect, useState } from 'react';
 
 import AnswerForm from 'components/forms/AnswerForm';
-import Scoreboard from 'components/Scoreboard';
-import Question from 'components/Question';
+import Scoreboard from 'components/tables/Scoreboard';
+import Question from 'components/cards/Question';
 import LoginForm from 'components/forms/LoginForm';
 import LogoutButton from 'components/auth/LogoutButton';
-import PlayerScorecard from 'components/PlayerScorecard';
+import PlayerScorecard from 'components/cards/PlayerScorecard';
 import Timer from 'components/Timer';
 import ToastAlert from 'components/ToastAlert';
 
@@ -13,6 +13,7 @@ import API from 'TrebekbotAPI';
 import { trebekbotUrls } from 'TrebekbotAPI';
 
 const initAuthValue = JSON.parse(sessionStorage.getItem('isAuthenticated'));
+const initBoardId = JSON.parse(sessionStorage.getItem('boardId'));
 const initQuestionId = JSON.parse(sessionStorage.getItem('questionId'));
 const initTimer = JSON.parse(sessionStorage.getItem('timer'));
 const initUsernameValue = sessionStorage.getItem('username');
@@ -23,6 +24,7 @@ export const questionTotalTime = 60;
 export const dailyDoubleTotalTime = 60;
 
 export const AuthContext = createContext(initAuthValue);
+export const BoardContext = createContext(initBoardId)
 export const QuestionContext = createContext();
 export const ScoreContext = createContext();
 export const TimerContext = createContext(initTimer);
@@ -41,6 +43,7 @@ export default function App() {
 	const [ topTen, setTopTen ] = useState();
 	const [ toastMessage, setToastMessage ] = useState();
 	const [ wager, setWager ] = useState(initWager);
+	const [ board, setBoard ] = useState();
 
 	useEffect(() => {
 		if (isAuthenticated) {
@@ -58,6 +61,12 @@ export default function App() {
 				.then((response) => {
 					setQuestion(JSON.parse(response.data));
 				});
+		}
+		if (initBoardId) {
+			API.get(trebekbotUrls.board, {"boardId": initBoardId})
+			.then((response) => {
+				setBoard(response.data);
+			});
 		}
 	}, [isAuthenticated]);
 
