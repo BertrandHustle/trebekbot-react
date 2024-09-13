@@ -90,7 +90,7 @@ export default function App() {
 											{isAuthenticated && question ? <Timer /> : null}
 											{isAuthenticated ? <PlayerScorecard /> : null}
 											{isAuthenticated && topTen ? <Scoreboard /> : null}
-										</BoardIdContext>
+										</BoardIdContext.Provider>
 									</WagerContext.Provider>
 								</TopTenContext.Provider>
 							</AuthContext.Provider>	
