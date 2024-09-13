@@ -1,6 +1,7 @@
 import React, { createContext, useEffect, useState } from 'react';
 
 import AnswerForm from 'components/forms/AnswerForm';
+import GameBoard from 'components/tables/GameBoard';
 import Scoreboard from 'components/tables/Scoreboard';
 import Question from 'components/cards/Question';
 import LoginForm from 'components/forms/LoginForm';
@@ -24,7 +25,7 @@ export const questionTotalTime = 60;
 export const dailyDoubleTotalTime = 60;
 
 export const AuthContext = createContext(initAuthValue);
-export const BoardContext = createContext(initBoardId)
+export const BoardIdContext = createContext(initBoardId)
 export const QuestionContext = createContext();
 export const ScoreContext = createContext();
 export const TimerContext = createContext(initTimer);
@@ -43,7 +44,7 @@ export default function App() {
 	const [ topTen, setTopTen ] = useState();
 	const [ toastMessage, setToastMessage ] = useState();
 	const [ wager, setWager ] = useState(initWager);
-	const [ board, setBoard ] = useState();
+	const [ boardId, setBoardId ] = useState(initBoardId);
 
 	useEffect(() => {
 		if (isAuthenticated) {
@@ -80,13 +81,16 @@ export default function App() {
 							<AuthContext.Provider value={{ isAuthenticated, setIsAuthenticated }}>
 								<TopTenContext.Provider value={{ topTen, setTopTen }}>
 									<WagerContext.Provider value={{ wager, setWager }}>
-										{!isAuthenticated ? <LoginForm /> : null}
-										{isAuthenticated ? <LogoutButton /> : null}
-										{isAuthenticated ? <Question /> : null}
-										{isAuthenticated ? <AnswerForm /> : null}
-										{isAuthenticated && question ? <Timer /> : null}
-										{isAuthenticated ? <PlayerScorecard /> : null}
-										{isAuthenticated && topTen ? <Scoreboard /> : null}
+										<BoardIdContext.Provider value={{ boardId, setBoardId }}>
+											{!isAuthenticated ? <LoginForm /> : null}
+											{isAuthenticated ? <LogoutButton /> : null}
+											{isAuthenticated ? <Question /> : null}
+											{isAuthenticated ? <AnswerForm /> : null}
+											{isAuthenticated ? <GameBoard /> : null}
+											{isAuthenticated && question ? <Timer /> : null}
+											{isAuthenticated ? <PlayerScorecard /> : null}
+											{isAuthenticated && topTen ? <Scoreboard /> : null}
+										</BoardIdContext>
 									</WagerContext.Provider>
 								</TopTenContext.Provider>
 							</AuthContext.Provider>	
