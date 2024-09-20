@@ -63,12 +63,6 @@ export default function App() {
 					setQuestion(JSON.parse(response.data));
 				});
 		}
-		if (initBoardId) {
-			API.get(trebekbotUrls.board, {"boardId": initBoardId})
-			.then((response) => {
-				setBoard(response.data);
-			});
-		}
 	}, [isAuthenticated]);
 
 	return (

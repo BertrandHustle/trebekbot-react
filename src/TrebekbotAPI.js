@@ -13,6 +13,6 @@ export const trebekbotUrls = {
   'login': '/game/login/',
   'question': '/game/question/',
   'topTen': '/game/topten/',
-  'score': '/game/score',
-  'board': '/game/board'
+  'score': '/game/score/',
+  'board': '/game/board/'
 }

@@ -1,14 +1,13 @@
 import { BoardIdContext } from 'App';
 import React, { useContext, useEffect, useState } from 'react';
-import { Col, Container, Row } from 'react-bootstrap';
+import { Card, Col, Container, Row } from 'react-bootstrap';
 
 import API, { trebekbotUrls } from 'TrebekbotAPI';
 
 export default function GameBoard () {
     const { boardId, setBoardId } = useContext(BoardIdContext);
-    const [ questionTiles, setQuestionTiles ] = useState([]);
-    const [ numRows, setNumRows ] = useContext(0);
-    const [ categories, setCategories ] = useContext(0); // also acts as columns
+    const [ questionTiles, setQuestionTiles ] = useState();
+    const [ categories, setCategories ] = useState(); // also acts as columns
     
     function createCategoriesArray(questionArray) {
         // create an array of every category in the questions array returned from Trebekbot's backend
@@ -20,27 +19,27 @@ export default function GameBoard () {
             API.post(trebekbotUrls.board)
                 .then(res => {
                     let parsedData = JSON.parse(res.data);
-                    setId(parsedData.boardId);
-                    setQuestionTiles(parsedData.questionTiles)
+                    setBoardId(parsedData.boardId);
+                    setQuestionTiles(parsedData.questionTiles);
+                    setCategories(createCategoriesArray(parsedData.questionTiles));
                 })
         } 
-        else {
+        else if (!questionTiles) {
             API.get(trebekbotUrls.board)
                 .then(res => {
                     let parsedData = JSON.parse(res.data);
-                    setQuestionTiles(parsedData.questionTiles)
+                    setQuestionTiles(parsedData.questionTiles);
+                    setCategories(createCategoriesArray(parsedData.questionTiles));
                 })
         }
-
-        setCategories(createCategoriesArray(questionTiles));
-        setNumRows(questionTiles.length / numRows.length);
-
-    }, [boardId, setQuestionTiles, setRows, setCategories] )
-
+    }, [boardId, questionTiles, setBoardId, setQuestionTiles, setCategories] )
+    
     return(
         <div>
             <Container>
-                {categories.map(cat => <Col key={cat}>{cat}</Col>)}
+                {categories ? categories.map(cat => <Col key={cat}>
+                    {cat} {categories && questionTiles ? Array.from(Array(questionTiles.length / categories.length)).map((row, ix) => <Row key={ix}>ix</Row>) : null}
+                </Col>) : null}
             </Container>
         </div>
     )
