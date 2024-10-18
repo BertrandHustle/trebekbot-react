@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 
 import Card from 'react-bootstrap/Card';
 
 import { font, palette } from 'css/css';
 
-export default function QuestionTile ({ category }) {
+export default function CategoryTile ({ category }) {
 
     const styles = {
         categoryText: {

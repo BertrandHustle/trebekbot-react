@@ -1,14 +1,21 @@
 import { BoardIdContext } from 'App';
 import React, { useContext, useEffect, useState } from 'react';
-import { Card, Col, Container, Row } from 'react-bootstrap';
+import { Col, Container, Row } from 'react-bootstrap';
 
 import API, { trebekbotUrls } from 'TrebekbotAPI';
+import CategoryTile from 'components/cards/CategoryTile';
+import QuestionTile from 'components/cards/QuestionTile';
 
 export default function GameBoard () {
     const { boardId, setBoardId } = useContext(BoardIdContext);
     const [ questionTiles, setQuestionTiles ] = useState();
     const [ categories, setCategories ] = useState(); // also acts as columns
-    
+
+    function getQuestionTilesByCategory(category) {
+        // get all question tiles that belong to a given category
+        return [...Array].filter(tile => tile.category === category);
+    }
+
     function createCategoriesArray(questionArray) {
         // create an array of every category in the questions array returned from Trebekbot's backend
         return [...new Set(questionArray.map(({category}) => category))];
@@ -37,9 +44,18 @@ export default function GameBoard () {
     return(
         <div>
             <Container>
-                {categories ? categories.map(cat => <Col key={cat}>
-                    {cat} {categories && questionTiles ? Array.from(Array(questionTiles.length / categories.length)).map((row, ix) => <Row key={ix}>ix</Row>) : null}
-                </Col>) : null}
+                <Row>
+                    {categories ? categories.map(cat => 
+                        <Col key={cat}>
+                            <CategoryTile category={cat}/>
+                            {getQuestionTilesByCategory(cat) ? questionTiles.map(tile => 
+                            <Col>
+                                <QuestionTile id={tile.id} question={tile}/>
+                            </Col>
+                    ) : null}
+                        </Col>
+                    ) : null}   
+                </Row>
             </Container>
         </div>
     )
