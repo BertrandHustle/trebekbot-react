@@ -8,18 +8,23 @@ import QuestionTile from 'components/cards/QuestionTile';
 
 export default function GameBoard () {
     const { boardId, setBoardId } = useContext(BoardIdContext);
-    const [ questionTiles, setQuestionTiles ] = useState();
-    const [ categories, setCategories ] = useState(); // also acts as columns
+    const [ boardDict, setBoardDict ] = useState();
 
-    function getQuestionTilesByCategory(category) {
-        // get all question tiles that belong to a given category
-        return [...Array].filter(tile => tile.category === category);
-    }
+    // function getQuestionTilesByCategory(category, tilesArray) {
+    //     // get all question tiles that belong to a given category
+    //     let tiles = [];
+    //     for (let tile of tiles) {
+    //         if (tile.category === category) {
+    //             tiles.append(tile);
+    //         }
+    //     }
+    //     return tiles
+    // }
 
-    function createCategoriesArray(questionArray) {
-        // create an array of every category in the questions array returned from Trebekbot's backend
-        return [...new Set(questionArray.map(({category}) => category))];
-    }
+    // function createCategoriesArray(questionArray) {
+    //     // create an array of every category in the questions array returned from Trebekbot's backend
+    //     return [...new Set(questionArray.map(({category}) => category))];
+    // }
 
     useEffect(() => {
         if (boardId == null) {
@@ -27,32 +32,30 @@ export default function GameBoard () {
                 .then(res => {
                     let parsedData = JSON.parse(res.data);
                     setBoardId(parsedData.boardId);
-                    setQuestionTiles(parsedData.questionTiles);
-                    setCategories(createCategoriesArray(parsedData.questionTiles));
+                    setBoardDict(parsedData.boardDict);
                 })
         } 
-        else if (!questionTiles) {
+        else if (!boardDict) {
             API.get(trebekbotUrls.board)
                 .then(res => {
                     let parsedData = JSON.parse(res.data);
-                    setQuestionTiles(parsedData.questionTiles);
-                    setCategories(createCategoriesArray(parsedData.questionTiles));
+                    setBoardDict(parsedData.boardDict);
                 })
         }
-    }, [boardId, questionTiles, setBoardId, setQuestionTiles, setCategories] )
+    }, [boardId, boardDict, setBoardId, setBoardDict] )
     
     return(
         <div>
             <Container>
                 <Row>
-                    {categories ? categories.map(cat => 
+                    {boardDict ? Object.keys(boardDict).map(cat => 
                         <Col key={cat}>
                             <CategoryTile category={cat}/>
-                            {getQuestionTilesByCategory(cat) ? questionTiles.map(tile => 
-                            <Col>
-                                <QuestionTile id={tile.id} question={tile}/>
-                            </Col>
-                    ) : null}
+                            {boardDict[cat].map(tile => 
+                                <Col>
+                                    <QuestionTile id={tile.id} question={tile}/>
+                                </Col>
+                            )}
                         </Col>
                     ) : null}   
                 </Row>
