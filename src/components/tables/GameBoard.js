@@ -10,22 +10,6 @@ export default function GameBoard () {
     const { boardId, setBoardId } = useContext(BoardIdContext);
     const [ boardDict, setBoardDict ] = useState();
 
-    // function getQuestionTilesByCategory(category, tilesArray) {
-    //     // get all question tiles that belong to a given category
-    //     let tiles = [];
-    //     for (let tile of tiles) {
-    //         if (tile.category === category) {
-    //             tiles.append(tile);
-    //         }
-    //     }
-    //     return tiles
-    // }
-
-    // function createCategoriesArray(questionArray) {
-    //     // create an array of every category in the questions array returned from Trebekbot's backend
-    //     return [...new Set(questionArray.map(({category}) => category))];
-    // }
-
     useEffect(() => {
         if (boardId == null) {
             API.post(trebekbotUrls.board)

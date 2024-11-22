@@ -9,13 +9,14 @@ export default function CategoryTile ({ category }) {
     const styles = {
         categoryText: {
             fontFamily: font.category,      
-            color: palette.categoryText,
-            fontSize: '100%',
+            color: palette.questionText,
+            fontSize: '125%',
 	        textAlign: 'center',
+            paddingTop: 'auto'
         },
         categoryTile: {
+            height: '5.5rem',
             width: '10rem',
-            display: 'block',
             margin: 'auto',
             marginTop: 5,
             backgroundColor: palette.questionBackground
@@ -23,9 +24,9 @@ export default function CategoryTile ({ category }) {
     }
 
     return(
-        <div className='text-center' style={styles.categoryTile}>
-            <Card>
-                <Card.Body>
+        <div>
+            <Card className='d-flex' style={styles.categoryTile}>
+                <Card.Body className='d-flex align-items-center justify-content-center'>
                     <Card.Title style={styles.categoryText}>
                         {category}
                     </Card.Title>
