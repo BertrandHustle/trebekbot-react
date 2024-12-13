@@ -1,18 +1,17 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 
-import { QuestionContext, QuestionAudioLinks, QuestionVisualLinks, TimerContext, WagerContext } from 'App';
+import { QuestionContext, QuestionAudioLinksContext, QuestionVisualLinksContext, TimerContext } from 'App';
 import Card from 'react-bootstrap/Card';
 
 import API, { trebekbotUrls } from 'TrebekbotAPI';
 import { font, palette } from 'css/css';
 
-export default function QuestionTile ({ id, question }) {
+export default function QuestionTile ({ id, tileQuestion }) {
     const [ alive, setAlive ] = useState(true);
-    const { question, setQuestion } = useContext(QuestionContext);
-    const { setQuestionAudioLinks } = useContext(QuestionAudioLinks);
-    const { setQuestionVisualLinks } = useContext(QuestionVisualLinks);
+    const { setQuestion } = useContext(QuestionContext);
+    const { setQuestionAudioLinks } = useContext(QuestionAudioLinksContext);
+    const { setQuestionVisualLinks } = useContext(QuestionVisualLinksContext);
     const { setTime } = useContext(TimerContext);
-    const { wager } = useContext(WagerContext);
 
     const styles = {
         moneyText: {
@@ -45,7 +44,7 @@ export default function QuestionTile ({ id, question }) {
     };
 
     function selectTile() {
-        API.post(trebekbotUrls.question, id)
+        API.post(trebekbotUrls.question, {questionId: id})
             .then(res => {
                 let parsedData = JSON.parse(res.data);
                 setTime(60);
@@ -77,7 +76,7 @@ export default function QuestionTile ({ id, question }) {
             <Card className='d-flex' onClick={selectTile} style={styles.questionTile}>
                 <Card.Body className='d-flex align-items-center justify-content-center'>
                     <Card.Title style={styles.moneyText}>
-                        {question.value}
+                        {tileQuestion.value}
                     </Card.Title>
                 </Card.Body>
             </Card>

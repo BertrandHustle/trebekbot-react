@@ -34,10 +34,11 @@ export default function GameBoard () {
                 <Row>
                     {boardDict ? Object.keys(boardDict).map(cat => 
                         <Col key={cat}>
+                            {/* {TODO: add unique CategoryTile key */}
                             <CategoryTile category={cat}/>
                             {boardDict[cat].map(tile => 
                                 <Col>
-                                    <QuestionTile id={tile.id} question={tile}/>
+                                    <QuestionTile key={tile} id={tile.id} tileQuestion={tile}/>
                                 </Col>
                             )}
                         </Col>

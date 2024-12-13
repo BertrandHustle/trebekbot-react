@@ -1,6 +1,5 @@
 import React, { createContext, useEffect, useState } from 'react';
 
-import AnswerForm from 'components/forms/AnswerForm';
 import GameBoard from 'components/tables/GameBoard';
 import LoginForm from 'components/forms/LoginForm';
 import LogoutButton from 'components/auth/LogoutButton';
@@ -30,8 +29,8 @@ export const dailyDoubleTotalTime = 60;
 export const AuthContext = createContext(initAuthValue);
 export const BoardIdContext = createContext(initBoardId)
 export const QuestionContext = createContext();
-export const QuestionAudioLinks = createContext();
-export const QuestionVisualLinks = createContext();
+export const QuestionAudioLinksContext = createContext();
+export const QuestionVisualLinksContext = createContext();
 export const ScoreContext = createContext();
 export const TimerContext = createContext(initTimer);
 export const ToastMessageContext = createContext();
@@ -77,8 +76,8 @@ export default function App() {
 			{toastMessage ? <ToastAlert /> : null}
 			<TimerContext.Provider value={{ time, setTime }}>
 				<QuestionContext.Provider value={{ question, setQuestion }}>
-					<QuestionAudioLinks.Provider value={{ questionAudioLinks, setQuestionAudioLinks }}>
-						<QuestionVisualLinks.Provider value={{ questionVisualLinks, setQuestionVisualLinks }}>
+					<QuestionAudioLinksContext.Provider value={{ questionAudioLinks, setQuestionAudioLinks }}>
+						<QuestionVisualLinksContext.Provider value={{ questionVisualLinks, setQuestionVisualLinks }}>
 							<UsernameContext.Provider value={{ username, setUsername }}>
 								<ScoreContext.Provider value={{ score, setScore }}>
 									<AuthContext.Provider value={{ isAuthenticated, setIsAuthenticated }}>
@@ -89,7 +88,6 @@ export default function App() {
 													{isAuthenticated ? <LogoutButton /> : null}
 													{isAuthenticated && question?.daily_double && !wager ? <DailyDoubleModal /> : null}
 													{isAuthenticated && question ? <QuestionModal /> : null}
-													{isAuthenticated ? <AnswerForm /> : null}
 													{isAuthenticated ? <GameBoard /> : null}
 													{isAuthenticated && question ? <Timer /> : null}
 													{isAuthenticated ? <PlayerScorecard /> : null}
@@ -100,8 +98,8 @@ export default function App() {
 									</AuthContext.Provider>	
 								</ScoreContext.Provider>
 							</UsernameContext.Provider>
-						</QuestionVisualLinks.Provider>
-					</QuestionAudioLinks.Provider>
+						</QuestionVisualLinksContext.Provider>
+					</QuestionAudioLinksContext.Provider>
 				</QuestionContext.Provider>
 			</TimerContext.Provider>
 		</ToastMessageContext.Provider>
