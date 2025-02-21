@@ -4,7 +4,6 @@ import GameBoard from 'components/tables/GameBoard';
 import LoginForm from 'components/forms/LoginForm';
 import LogoutButton from 'components/auth/LogoutButton';
 import PlayerScorecard from 'components/cards/PlayerScorecard';
-import QuestionModal from 'components/modals/QuestionModal';
 import Scoreboard from 'components/tables/Scoreboard';
 import Timer from 'components/Timer';
 import ToastAlert from 'components/ToastAlert';
@@ -12,6 +11,7 @@ import ToastAlert from 'components/ToastAlert';
 import API from 'TrebekbotAPI';
 import { trebekbotUrls } from 'TrebekbotAPI';
 import DailyDoubleModal from 'components/modals/DailyDoubleModal';
+import AnswerModal from 'components/modals/AnswerModal';
 
 //init
 const initAuthValue = JSON.parse(sessionStorage.getItem('isAuthenticated'));
@@ -87,7 +87,7 @@ export default function App() {
 													{!isAuthenticated ? <LoginForm /> : null}
 													{isAuthenticated ? <LogoutButton /> : null}
 													{isAuthenticated && question?.daily_double && !wager ? <DailyDoubleModal /> : null}
-													{isAuthenticated && question ? <QuestionModal /> : null}
+													{isAuthenticated && question ? <AnswerModal /> : null}
 													{isAuthenticated ? <GameBoard /> : null}
 													{isAuthenticated && question ? <Timer /> : null}
 													{isAuthenticated ? <PlayerScorecard /> : null}
