@@ -4,17 +4,11 @@ import API from 'TrebekbotAPI';
 import { TopTenContext } from 'App';
 import { useContext, useEffect } from 'react';
 import { trebekbotUrls } from 'TrebekbotAPI';
+import './tables.css'
 
 export default function Scoreboard() {
 
 	const { topTen, setTopTen } = useContext(TopTenContext);
-
-	const styles = {
-		scoreboard: {
-			width: '15%',
-			whiteSpace: 'nowrap'
-		}
-	}
 
 	useEffect(() => {
 		API.get(trebekbotUrls.topTen)
@@ -31,7 +25,7 @@ export default function Scoreboard() {
 	)
 
 	return (
-		<Table striped bordered variant="dark" style={styles.scoreboard} className='position-absolute bottom-0 end-0'>
+		<Table striped bordered variant="dark" className='position-absolute bottom-0 end-0 scoreboard'>
 			<thead>
 				<tr>
 					<th>Player</th>

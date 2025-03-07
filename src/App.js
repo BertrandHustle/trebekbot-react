@@ -5,7 +5,7 @@ import LoginForm from 'components/forms/LoginForm';
 import LogoutButton from 'components/auth/LogoutButton';
 import PlayerScorecard from 'components/cards/PlayerScorecard';
 import Scoreboard from 'components/tables/Scoreboard';
-import Timer from 'components/Timer';
+import Timer from 'components/timer/Timer';
 import ToastAlert from 'components/ToastAlert';
 
 import API from 'TrebekbotAPI';

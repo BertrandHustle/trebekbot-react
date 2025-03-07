@@ -3,6 +3,7 @@ import { useContext, useState } from 'react';
 import { AuthContext, ToastMessageContext, UsernameContext } from 'App';
 import API from 'TrebekbotAPI';
 import { trebekbotUrls } from 'TrebekbotAPI';
+import './forms.css'
 
 export default function LoginForm() {
 
@@ -12,22 +13,6 @@ export default function LoginForm() {
     const [formUsername, setFormUsername] = useState('');
     const [formPassword, setFormPassword] = useState('');
     const [error, setError] = useState('');
-
-    const styles = {
-        loginForm: {
-            display: 'block',
-            maxWidth: '30ch',
-            margin: 'auto',
-        },
-        loginButton: {
-            marginTop: 5
-        },
-        helpCard: {
-            position: 'absolute',
-            top: 0,
-            left: '5rem'
-        }
-    }
 
     function login(event, uname, pass) {
         event.preventDefault();
@@ -69,7 +54,7 @@ export default function LoginForm() {
                 <h2>Login or Sign Up</h2>
             </div>
 
-            <form onSubmit={handleLogin} style={styles.loginForm}>
+            <form onSubmit={handleLogin} className="login-form">
                 <div className="form-group">
                     <label htmlFor="username">Username</label>
                     <input type="text" className="form-control" id="username" name="username" value={formUsername} onChange={(e) => setFormUsername(e.target.value)} />
@@ -83,12 +68,12 @@ export default function LoginForm() {
                         {error}
                     </div>
                 }
-                <div className="text-center" style={styles.loginButton}>
+                <div className="text-center login-button">
                     <button type="submit" className="btn btn-primary text-center">Login</button>
                 </div>
             </form>
 
-            <div style={styles.helpCard} className='card mt-5 w-25 mx-auto bg-primary-subtle text-body-emphasis'>
+            <div className='card mt-5 w-25 mx-auto bg-primary-subtle text-body-emphasis help-card'>
                 <div className='form-text'>
                     <h5 className='text-center'>
                         New Players:

@@ -3,18 +3,13 @@ import Button from 'react-bootstrap/Button';
 
 import { AuthContext, UsernameContext } from 'App';
 
+import './auth.css';
 import API from 'TrebekbotAPI';
 
 export default function LogoutButton() {
 
 	const { setIsAuthenticated } = useContext(AuthContext);
 	const { setUsername } = useContext(UsernameContext);
-
-	const buttonStyle = {
-		float: "right",
-		display: "flex",
-		position: "relative"
-	}
 
 	function logout() {
 		API.post("/game/logout/")
@@ -30,7 +25,7 @@ export default function LogoutButton() {
 	};
 
 	return (
-		<Button style={buttonStyle} variant='outline-secondary' onClick={logout}>
+		<Button className='button-style' variant='outline-secondary' onClick={logout}>
 			Logout
 		</Button>
 	);

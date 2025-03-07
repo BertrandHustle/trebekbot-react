@@ -4,7 +4,7 @@ import { QuestionContext, QuestionAudioLinksContext, QuestionVisualLinksContext,
 import Card from 'react-bootstrap/Card';
 
 import API, { trebekbotUrls } from 'TrebekbotAPI';
-import { font, palette } from 'css/css';
+import './cards.css';
 
 export default function QuestionTile ({ id, tileQuestion }) {
     const [ alive, setAlive ] = useState(true);
@@ -12,22 +12,6 @@ export default function QuestionTile ({ id, tileQuestion }) {
     const { setQuestionAudioLinks } = useContext(QuestionAudioLinksContext);
     const { setQuestionVisualLinks } = useContext(QuestionVisualLinksContext);
     const { setTime } = useContext(TimerContext);
-
-    const styles = {
-        moneyText: {
-            fontFamily: font.category,      
-            color: palette.moneyText,
-            fontSize: '300%',
-	        textAlign: 'center'
-        },
-        questionTile: {
-            height: '5.5rem',
-            width: '10rem',
-            margin: 'auto',
-            marginTop: 5,
-            backgroundColor: palette.questionBackground
-        }
-    }
 
     function arrayAudioVisualLinks(links) {
         let audioLinkArray = [];
@@ -73,9 +57,9 @@ export default function QuestionTile ({ id, tileQuestion }) {
 
     return(
         <div>
-            <Card className='d-flex' onClick={selectTile} style={styles.questionTile}>
+            <Card className='d-flex question-tile' onClick={selectTile}>
                 <Card.Body className='d-flex align-items-center justify-content-center'>
-                    <Card.Title style={styles.moneyText}>
+                    <Card.Title className='money-text'>
                         {tileQuestion.value}
                     </Card.Title>
                 </Card.Body>

@@ -5,8 +5,7 @@ import Modal from 'react-bootstrap/Modal';
 
 import { QuestionContext, ScoreContext, UsernameContext, TimerContext, ToastMessageContext, TopTenContext, WagerContext } from 'App';
 import API, { trebekbotUrls } from 'TrebekbotAPI';
-import { font, palette } from 'css/css';
-
+import './modals.css'
 
 export default function AnswerForm() {
 
@@ -18,22 +17,6 @@ export default function AnswerForm() {
 	const { setTopTen } = useContext(TopTenContext);
 	const { username } = useContext(UsernameContext);
 	const { wager, setWager } = useContext(WagerContext)
-
-	const styles = {
-		answerForm: {
-			backgroundColor: palette.questionBackground,
-			display: 'block',
-			maxWidth: '75ch',
-			margin: 'auto',
-			textAlign: 'center'
-		},
-		answerText: {
-			fontFamily: font.question,
-			fontSize: '250%',
-			color: palette.questionText,
-			textAlign: 'center'
-		}
-	}
 
 	const handleChange = (e) => {
 		setAnswer(e.target.value);
@@ -64,15 +47,15 @@ export default function AnswerForm() {
 	}
 
 	return (
-		<div backgroundcolor={palette.questionBackground} className='text-center'>
+		<div className='text-center'>
 			<Modal show="true">
-				<Modal.Header style={styles.answerForm} >
+				<Modal.Header className='answer-form'>
 					<Modal.Title>{question.category}</Modal.Title>
 				</Modal.Header>
-				<Modal.Body style={styles.answerForm}>
+				<Modal.Body className='answer-form'>
 					<Form onSubmit={handleSubmit} className='mt-3'>
 						<Form.Group className='mb-3'>
-							<Form.Text style={styles.answerText}>{question.text}</Form.Text>
+							<Form.Text className='answer-text'>{question.text}</Form.Text>
 							<br></br>
 							<Form.Control type="text" value={answer} onChange={handleChange} />
 						</Form.Group>
