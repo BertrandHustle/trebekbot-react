@@ -49,15 +49,15 @@ export default function AnswerForm() {
 	return (
 		<div className='text-center'>
 			<Modal show="true">
-				<Modal.Header className='answer-form'>
-					<Modal.Title>{question.category}</Modal.Title>
+				<Modal.Header className='answer-header'>
+					<Modal.Title className='answer-category'>{question.category}</Modal.Title>
 				</Modal.Header>
 				<Modal.Body className='answer-form'>
 					<Form onSubmit={handleSubmit} className='mt-3'>
 						<Form.Group className='mb-3'>
 							<Form.Text className='answer-text'>{question.text}</Form.Text>
 							<br></br>
-							<Form.Control type="text" value={answer} onChange={handleChange} />
+							<Form.Control type="text" value={answer} onChange={handleChange} className='mt-3 mb-3'/>
 						</Form.Group>
 						<Button variant='primary' type='submit' disabled={question ? false : true} className='text-center mb-5'>
 							Submit
