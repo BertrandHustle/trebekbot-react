@@ -1,0 +1,31 @@
+.answer-header {
+    background-color: #060ce9;
+    display: block;
+    text-align: center;
+    margin-bottom: -1px;
+}
+
+.answer-category {
+    font-family: Swiss911;      
+    color: #cccccc;
+    font-size: 200%;
+}
+
+.answer-form {
+    background-color: #060ce9;
+    display: block;
+    max-width: 75ch;
+    margin: auto;
+    text-align: center;
+}
+
+.answer-text {
+    font-family: ITCKorinna;
+    font-size: 200%;
+    color: #cccccc;
+    text-align: center;
+}
+
+.daily-double-text {
+    font-family: SteileFuturaBold
+}

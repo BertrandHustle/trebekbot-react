@@ -46,7 +46,7 @@ export default function GameBoard () {
                             <CategoryTile category={cat}/>
                             {boardDict[cat].map(tile => 
                                 <Col>
-                                    <QuestionTile key={tile} id={tile.id} tileQuestion={tile}/>
+                                    <QuestionTile key={tile.id} alive={tile.alive} id={tile.id} tileQuestion={tile.question}/>
                                 </Col>
                             )}
                         </Col>

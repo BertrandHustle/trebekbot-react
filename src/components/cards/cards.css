@@ -1,0 +1,47 @@
+.category-text {
+    font-family: Swiss911;      
+    color: #cccccc;
+    font-size: 125%;
+    text-align: center;
+    padding-top: auto;
+}
+
+.category-tile {
+    height: 5.5rem;
+    width: 10rem;
+    margin: auto;
+    margin-top: 5;
+    background-color: #060ce9
+}
+
+.player-score {
+    font-family: Swiss911;
+    color: white;
+}
+
+.player-username {
+    color: white;
+}
+
+.player-card {
+    height: 12rem;
+    width: 18rem;
+    text-align: center;
+    margin: auto;
+    background-color: #060ce9;
+}
+
+.money-text {
+    font-family: Swiss911;      
+    color: #daa520;
+    font-size: 300%;
+    text-align: center;
+}
+
+.question-tile {
+    height: 5.5rem;
+    width: 10rem;
+    margin: auto;
+    margin-top: 5;
+    background-color: #060ce9;
+}

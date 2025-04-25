@@ -6,8 +6,8 @@ import Card from 'react-bootstrap/Card';
 import API, { trebekbotUrls } from 'TrebekbotAPI';
 import './cards.css';
 
-export default function QuestionTile ({ id, tileQuestion }) {
-    const [ alive, setAlive ] = useState(true);
+export default function QuestionTile ({ alive, id, tileQuestion }) {
+    const [ isAlive, setIsAlive ] = useState(alive);
     const { setQuestion } = useContext(QuestionContext);
     const { setQuestionAudioLinks } = useContext(QuestionAudioLinksContext);
     const { setQuestionVisualLinks } = useContext(QuestionVisualLinksContext);
@@ -28,7 +28,7 @@ export default function QuestionTile ({ id, tileQuestion }) {
     };
 
     function selectTile() {
-        API.post(trebekbotUrls.question, {questionId: id})
+        API.post(trebekbotUrls.question, {questionId: tileQuestion.id})
             .then(res => {
                 let parsedData = JSON.parse(res.data);
                 setTime(60);
@@ -46,7 +46,7 @@ export default function QuestionTile ({ id, tileQuestion }) {
         API.patch(trebekbotUrls.board, {questionTileId: id})
             .then(res => {
                 if (res.status === 200) {
-                    setAlive(false);
+                    setIsAlive(false);
                 }
                 else {
                     console.log('Unable to set QuestionTile to dead!')
