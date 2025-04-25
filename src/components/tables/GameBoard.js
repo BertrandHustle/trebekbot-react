@@ -38,15 +38,13 @@ export default function GameBoard () {
     return(
         <div>
             <Container>
-                {/* TODO: fix unique key error on rows */}
                 <Row>
                     {boardDict ? Object.keys(boardDict).map(cat => 
                         <Col key={cat}>
-                            {/* {TODO: add unique CategoryTile key */}
                             <CategoryTile category={cat}/>
                             {boardDict[cat].map(tile => 
-                                <Col>
-                                    <QuestionTile key={tile.id} alive={tile.alive} id={tile.id} tileQuestion={tile.question}/>
+                                <Col key={tile.id}>
+                                    <QuestionTile alive={tile.alive} id={tile.id} tileQuestion={tile.question}/>
                                 </Col>
                             )}
                         </Col>
