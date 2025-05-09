@@ -57,7 +57,7 @@ export default function QuestionTile ({ alive, id, tileQuestion }) {
 
     return(
         <div>
-            <Card className='d-flex question-tile' onClick={selectTile}>
+            <Card style={{ filter: isAlive? 'brightness(1)': 'brightness(0.5)' }} className='d-flex question-tile' onClick={selectTile}>
                 <Card.Body className='d-flex align-items-center justify-content-center'>
                     <Card.Title className='money-text'>
                         {tileQuestion.value}

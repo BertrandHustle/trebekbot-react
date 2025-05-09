@@ -19,7 +19,7 @@ export default function ToastAlert() {
     }
 
     return (
-        <ToastContainer className="p-3" position='top-center' style={{ zIndex: 1 }}>
+        <ToastContainer className="p-3" position='bottom-center' style={{ zIndex: 1 }}>
             <Toast onClose={closeToast} show={show} delay={3000} autohide>
                 <Toast.Body>
                     { toastMessage }
