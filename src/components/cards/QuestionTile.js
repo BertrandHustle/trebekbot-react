@@ -45,7 +45,6 @@ export default function QuestionTile ({ alive, id, tileQuestion }) {
                     console.log('Unable to get QuestionTile status!');
                 }
             })
-        setActiveQuestionTileId(id);
         sessionStorage.setItem('activeQuestionTileId', id)
     }, [id, setActiveQuestionTileId]);
 
@@ -64,17 +63,20 @@ export default function QuestionTile ({ alive, id, tileQuestion }) {
     };
 
     function selectTile() {
-        API.post(trebekbotUrls.question, {questionId: tileQuestion.id})
-            .then(res => {
-                let parsedData = JSON.parse(res.data);
-                setTime(60);
-                setQuestion(parsedData);
-                let [audioLinkArray, visualLinkArray] = arrayAudioVisualLinks(parsedData.valid_links);
-                setQuestionAudioLinks(audioLinkArray);
-                setQuestionVisualLinks(visualLinkArray);
-                sessionStorage.setItem('questionId', parsedData.id)
-            }
-        )
+        if (isAlive) {
+            API.post(trebekbotUrls.question, {questionId: tileQuestion.id})
+                .then(res => {
+                    let parsedData = JSON.parse(res.data);
+                    setActiveQuestionTileId(id);
+                    setTime(60);
+                    setQuestion(parsedData);
+                    let [audioLinkArray, visualLinkArray] = arrayAudioVisualLinks(parsedData.valid_links);
+                    setQuestionAudioLinks(audioLinkArray);
+                    setQuestionVisualLinks(visualLinkArray);
+                    sessionStorage.setItem('questionId', parsedData.id)
+                }
+            )
+        }
     }
 
     return(
