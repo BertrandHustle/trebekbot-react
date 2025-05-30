@@ -2,9 +2,11 @@ import React, {useContext, useEffect} from 'react';
 
 import './timer.css'
 import TimerLight from './TimerLight';
-import { QuestionContext, TimerContext, WagerContext } from 'App';
+import { killTile } from 'components/cards/QuestionTile';
+import { ActiveQuestionTileIdContext, QuestionContext, TimerContext, WagerContext } from 'App';
 
 export default function Timer () {
+    const { activeQuestionTileId, setActiveQuestionTileId } = useContext(ActiveQuestionTileIdContext);
     const { wager, setWager } = useContext(WagerContext);
     const { setQuestion } = useContext(QuestionContext);
     const { time, setTime } = useContext(TimerContext);
@@ -21,6 +23,7 @@ export default function Timer () {
                 setWager(0);
             }
             clearInterval(timer);
+            killTile(activeQuestionTileId, setActiveQuestionTileId);
             setQuestion();
             sessionStorage.setItem('timer', 0);
             sessionStorage.setItem('questionId', null);
@@ -28,7 +31,7 @@ export default function Timer () {
         }
         
         return () => clearInterval(timer);
-    }, [setQuestion, time, setTime, wager, setWager]);
+    }, [activeQuestionTileId, setActiveQuestionTileId, setQuestion, time, setTime, wager, setWager]);
 
     // nine lights for timer
 

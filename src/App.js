@@ -14,6 +14,7 @@ import DailyDoubleModal from 'components/modals/DailyDoubleModal';
 import AnswerModal from 'components/modals/AnswerModal';
 
 //init
+const initActiveQuestionTileId = JSON.parse(sessionStorage.getItem('activeQuestionTileId'));
 const initAuthValue = JSON.parse(sessionStorage.getItem('isAuthenticated'));
 const initBoardId = JSON.parse(sessionStorage.getItem('boardId'));
 const initQuestionId = JSON.parse(sessionStorage.getItem('questionId'));
@@ -26,6 +27,7 @@ export const questionTotalTime = 60;
 export const dailyDoubleTotalTime = 60;
 
 //context
+export const ActiveQuestionTileIdContext = createContext(initActiveQuestionTileId);
 export const AuthContext = createContext(initAuthValue);
 export const BoardIdContext = createContext(initBoardId)
 export const QuestionContext = createContext();
@@ -40,6 +42,7 @@ export const WagerContext = createContext(initWager);
 
 export default function App() {
 
+	const [ activeQuestionTileId, setActiveQuestionTileId ] = useState(initActiveQuestionTileId);
 	const [ isAuthenticated, setIsAuthenticated ] = useState(initAuthValue);
 	const [ username, setUsername ] = useState(initUsernameValue);
 	const [ question, setQuestion ] = useState();
@@ -76,30 +79,32 @@ export default function App() {
 			{toastMessage ? <ToastAlert /> : null}
 			<TimerContext.Provider value={{ time, setTime }}>
 				<QuestionContext.Provider value={{ question, setQuestion }}>
-					<QuestionAudioLinksContext.Provider value={{ questionAudioLinks, setQuestionAudioLinks }}>
-						<QuestionVisualLinksContext.Provider value={{ questionVisualLinks, setQuestionVisualLinks }}>
-							<UsernameContext.Provider value={{ username, setUsername }}>
-								<ScoreContext.Provider value={{ score, setScore }}>
-									<AuthContext.Provider value={{ isAuthenticated, setIsAuthenticated }}>
-										<TopTenContext.Provider value={{ topTen, setTopTen }}>
-											<WagerContext.Provider value={{ wager, setWager }}>
-												<BoardIdContext.Provider value={{ boardId, setBoardId }}>
-													{!isAuthenticated ? <LoginForm /> : null}
-													{isAuthenticated ? <LogoutButton /> : null}
-													{isAuthenticated && question?.daily_double && !wager ? <DailyDoubleModal /> : null}
-													{isAuthenticated && question ? <AnswerModal /> : null}
-													{isAuthenticated ? <GameBoard /> : null}
-													{isAuthenticated && question ? <Timer /> : null}
-													{isAuthenticated ? <PlayerScorecard /> : null}
-													{isAuthenticated && topTen ? <Scoreboard /> : null}
-												</BoardIdContext.Provider>
-											</WagerContext.Provider>
-										</TopTenContext.Provider>
-									</AuthContext.Provider>	
-								</ScoreContext.Provider>
-							</UsernameContext.Provider>
-						</QuestionVisualLinksContext.Provider>
-					</QuestionAudioLinksContext.Provider>
+					<ActiveQuestionTileIdContext.Provider value={{ activeQuestionTileId, setActiveQuestionTileId }}>
+						<QuestionAudioLinksContext.Provider value={{ questionAudioLinks, setQuestionAudioLinks }}>
+							<QuestionVisualLinksContext.Provider value={{ questionVisualLinks, setQuestionVisualLinks }}>
+								<UsernameContext.Provider value={{ username, setUsername }}>
+									<ScoreContext.Provider value={{ score, setScore }}>
+										<AuthContext.Provider value={{ isAuthenticated, setIsAuthenticated }}>
+											<TopTenContext.Provider value={{ topTen, setTopTen }}>
+												<WagerContext.Provider value={{ wager, setWager }}>
+													<BoardIdContext.Provider value={{ boardId, setBoardId }}>
+														{!isAuthenticated ? <LoginForm /> : null}
+														{isAuthenticated ? <LogoutButton /> : null}
+														{isAuthenticated && question?.daily_double && !wager ? <DailyDoubleModal /> : null}
+														{isAuthenticated && question ? <AnswerModal /> : null}
+														{isAuthenticated ? <GameBoard /> : null}
+														{isAuthenticated && question ? <Timer /> : null}
+														{isAuthenticated ? <PlayerScorecard /> : null}
+														{isAuthenticated && topTen ? <Scoreboard /> : null}
+													</BoardIdContext.Provider>
+												</WagerContext.Provider>
+											</TopTenContext.Provider>
+										</AuthContext.Provider>	
+									</ScoreContext.Provider>
+								</UsernameContext.Provider>
+							</QuestionVisualLinksContext.Provider>
+						</QuestionAudioLinksContext.Provider>
+					</ActiveQuestionTileIdContext.Provider>
 				</QuestionContext.Provider>
 			</TimerContext.Provider>
 		</ToastMessageContext.Provider>

@@ -1,17 +1,53 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 
-import { QuestionContext, QuestionAudioLinksContext, QuestionVisualLinksContext, TimerContext } from 'App';
+import { ActiveQuestionTileIdContext, QuestionContext, QuestionAudioLinksContext, QuestionVisualLinksContext, TimerContext } from 'App';
 import Card from 'react-bootstrap/Card';
 
 import API, { trebekbotUrls } from 'TrebekbotAPI';
 import './cards.css';
 
+
+export function killTile(activeQuestionTileId, setActiveQuestionTileId) {
+    /// change tile status to dead
+    API.patch(trebekbotUrls.board, {questionTileId: activeQuestionTileId})
+        .then(res => {
+            if (res.status === 200) {
+                setActiveQuestionTileId();
+                sessionStorage.setItem('activeQuestionTileId', null);
+            }
+            else {
+                console.log('Unable to set QuestionTile to dead!')
+            }
+        }
+    )
+}
+
+
 export default function QuestionTile ({ alive, id, tileQuestion }) {
     const [ isAlive, setIsAlive ] = useState(alive);
+    const { setActiveQuestionTileId } = useContext(ActiveQuestionTileIdContext);
     const { setQuestion } = useContext(QuestionContext);
     const { setQuestionAudioLinks } = useContext(QuestionAudioLinksContext);
     const { setQuestionVisualLinks } = useContext(QuestionVisualLinksContext);
     const { setTime } = useContext(TimerContext);
+
+    // TODO: make this status update a single call to /board instead of individual calls per-tile?
+    useEffect(() => {
+        API.get(trebekbotUrls.board, {
+            params: {tileId: id}
+        })
+            .then(res => {
+                if (res.status === 200) {
+                    let tileIsAlive = JSON.parse(res.data).alive;
+                    setIsAlive(tileIsAlive);
+                }
+                else {
+                    console.log('Unable to get QuestionTile status!');
+                }
+            })
+        setActiveQuestionTileId(id);
+        sessionStorage.setItem('activeQuestionTileId', id)
+    }, [id, setActiveQuestionTileId]);
 
     function arrayAudioVisualLinks(links) {
         let audioLinkArray = [];
@@ -37,20 +73,6 @@ export default function QuestionTile ({ alive, id, tileQuestion }) {
                 setQuestionAudioLinks(audioLinkArray);
                 setQuestionVisualLinks(visualLinkArray);
                 sessionStorage.setItem('questionId', parsedData.id)
-            }
-        )
-    }
-
-    function killTile() {
-        /// change tile status to dead
-        API.patch(trebekbotUrls.board, {questionTileId: id})
-            .then(res => {
-                if (res.status === 200) {
-                    setIsAlive(false);
-                }
-                else {
-                    console.log('Unable to set QuestionTile to dead!')
-                }
             }
         )
     }

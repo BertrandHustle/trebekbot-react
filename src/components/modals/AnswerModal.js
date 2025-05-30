@@ -3,13 +3,17 @@ import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import Modal from 'react-bootstrap/Modal';
 
-import { QuestionContext, ScoreContext, UsernameContext, TimerContext, ToastMessageContext, TopTenContext, WagerContext } from 'App';
+import { 
+	ActiveQuestionTileIdContext, QuestionContext, ScoreContext, UsernameContext, TimerContext, ToastMessageContext, TopTenContext, WagerContext 
+} from 'App';
+import { killTile } from 'components/cards/QuestionTile';
 import API, { trebekbotUrls } from 'TrebekbotAPI';
 import './modals.css'
 
 export default function AnswerForm() {
 
 	const [ answer, setAnswer ] = useState('');
+	const { activeQuestionTileId, setActiveQuestionTileId } = useContext(ActiveQuestionTileIdContext);
 	const { question, setQuestion } = useContext(QuestionContext);
 	const { setScore } = useContext(ScoreContext);
 	const { setTime } = useContext(TimerContext);
@@ -18,11 +22,11 @@ export default function AnswerForm() {
 	const { username } = useContext(UsernameContext);
 	const { wager, setWager } = useContext(WagerContext)
 
-	const handleChange = (e) => {
+	function handleChange(e) {
 		setAnswer(e.target.value);
 	}
 
-	const handleSubmit = (e) => {
+	function handleSubmit(e) {
 		e.preventDefault();
 		API.post(trebekbotUrls.judgeAnswer, {
 			userAnswer: answer,
@@ -37,6 +41,7 @@ export default function AnswerForm() {
 			let result = response.data.result;
 			// if question is answered correctly
 			if (result === true) {
+				killTile(activeQuestionTileId, setActiveQuestionTileId);
 				setWager(0);
 				setTime(0);
 				setQuestion();
