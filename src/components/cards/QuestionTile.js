@@ -25,7 +25,7 @@ export function killTile(activeQuestionTileId, setActiveQuestionTileId) {
 
 export default function QuestionTile ({ alive, id, tileQuestion }) {
     const [ isAlive, setIsAlive ] = useState(alive);
-    const { setActiveQuestionTileId } = useContext(ActiveQuestionTileIdContext);
+    const { activeQuestionTileId, setActiveQuestionTileId } = useContext(ActiveQuestionTileIdContext);
     const { setQuestion } = useContext(QuestionContext);
     const { setQuestionAudioLinks } = useContext(QuestionAudioLinksContext);
     const { setQuestionVisualLinks } = useContext(QuestionVisualLinksContext);
@@ -46,7 +46,7 @@ export default function QuestionTile ({ alive, id, tileQuestion }) {
                 }
             })
         sessionStorage.setItem('activeQuestionTileId', id)
-    }, [id, setActiveQuestionTileId]);
+    }, [activeQuestionTileId, id, setActiveQuestionTileId]);
 
     function arrayAudioVisualLinks(links) {
         let audioLinkArray = [];
