@@ -25,6 +25,7 @@ export default function Timer () {
             clearInterval(timer);
             killTile(activeQuestionTileId, setActiveQuestionTileId);
             setQuestion();
+            setActiveQuestionTileId();
             sessionStorage.setItem('timer', 0);
             sessionStorage.setItem('questionId', null);
             sessionStorage.setItem('wager', 0);

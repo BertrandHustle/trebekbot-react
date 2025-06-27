@@ -1,0 +1,467 @@
+{
+    "boardId": 412,
+    "boardDict": {
+        "1993 MOVIES": [
+            {
+                "question": {
+                    "id": 62000,
+                    "air_date": "1994-05-02",
+                    "answer": "Jurassic Park",
+                    "category": "1993 MOVIES",
+                    "daily_double": false,
+                    "round": "Jeopardy!",
+                    "text": "'With a gross of over $330 million, this Steven Spielberg film was the big hit of 1993'",
+                    "valid_links": [],
+                    "value": 100
+                },
+                "alive": true,
+                "id": 11693
+            },
+            {
+                "question": {
+                    "id": 62006,
+                    "air_date": "1994-05-02",
+                    "answer": "Beethoven",
+                    "category": "1993 MOVIES",
+                    "daily_double": false,
+                    "round": "Jeopardy!",
+                    "text": "'In his most recent film, this St. Bernard has a girlfriend named Missy & 4 puppies'",
+                    "valid_links": [],
+                    "value": 200
+                },
+                "alive": true,
+                "id": 11694
+            },
+            {
+                "question": {
+                    "id": 62012,
+                    "air_date": "1994-05-02",
+                    "answer": "The Nightmare Before Christmas",
+                    "category": "1993 MOVIES",
+                    "daily_double": false,
+                    "round": "Jeopardy!",
+                    "text": "'This Tim Burton movie was made using stop-motion animation'",
+                    "valid_links": [],
+                    "value": 300
+                },
+                "alive": true,
+                "id": 11695
+            },
+            {
+                "question": {
+                    "id": 62018,
+                    "air_date": "1994-05-02",
+                    "answer": "Sister Act 2",
+                    "category": "1993 MOVIES",
+                    "daily_double": false,
+                    "round": "Jeopardy!",
+                    "text": "'This sequel was subtitled \u201cBack in the Habit\u201d'",
+                    "valid_links": [],
+                    "value": 400
+                },
+                "alive": true,
+                "id": 11696
+            },
+            {
+                "question": {
+                    "id": 62024,
+                    "air_date": "1994-05-02",
+                    "answer": "Shadowlands",
+                    "category": "1993 MOVIES",
+                    "daily_double": false,
+                    "round": "Jeopardy!",
+                    "text": "'Anthony Hopkins played the role of author C.S. Lewis in this Richard Attenborough film'",
+                    "valid_links": [],
+                    "value": 500
+                },
+                "alive": true,
+                "id": 11697
+            }
+        ],
+        "SKIP TO MY \"LU\"": [
+            {
+                "question": {
+                    "id": 179988,
+                    "air_date": "2000-01-27",
+                    "answer": "Lubricant",
+                    "category": "SKIP TO MY \"LU\"",
+                    "daily_double": false,
+                    "round": "Jeopardy!",
+                    "text": "'WD-40 for example'",
+                    "valid_links": [],
+                    "value": 100
+                },
+                "alive": true,
+                "id": 11663
+            },
+            {
+                "question": {
+                    "id": 179994,
+                    "air_date": "2000-01-27",
+                    "answer": "Lucid",
+                    "category": "SKIP TO MY \"LU\"",
+                    "daily_double": false,
+                    "round": "Jeopardy!",
+                    "text": "'Clear or easily understood'",
+                    "valid_links": [],
+                    "value": 200
+                },
+                "alive": true,
+                "id": 11664
+            },
+            {
+                "question": {
+                    "id": 180000,
+                    "air_date": "2000-01-27",
+                    "answer": "Luftwaffe",
+                    "category": "SKIP TO MY \"LU\"",
+                    "daily_double": false,
+                    "round": "Jeopardy!",
+                    "text": "'The German Air Force'",
+                    "valid_links": [],
+                    "value": 300
+                },
+                "alive": true,
+                "id": 11665
+            },
+            {
+                "question": {
+                    "id": 180006,
+                    "air_date": "2000-01-27",
+                    "answer": "Luigi",
+                    "category": "SKIP TO MY \"LU\"",
+                    "daily_double": false,
+                    "round": "Jeopardy!",
+                    "text": "'First name of playwright Pirandello'",
+                    "valid_links": [],
+                    "value": 400
+                },
+                "alive": true,
+                "id": 11666
+            },
+            {
+                "question": {
+                    "id": 180012,
+                    "air_date": "2000-01-27",
+                    "answer": "Lusaka",
+                    "category": "SKIP TO MY \"LU\"",
+                    "daily_double": false,
+                    "round": "Jeopardy!",
+                    "text": "'It's the capital city of Zambia'",
+                    "valid_links": [],
+                    "value": 500
+                },
+                "alive": true,
+                "id": 11667
+            }
+        ],
+        "SAY \"WH\"?": [
+            {
+                "question": {
+                    "id": 20052,
+                    "air_date": "1997-10-02",
+                    "answer": "\"Whoa!\"",
+                    "category": "SAY \"WH\"?",
+                    "daily_double": false,
+                    "round": "Jeopardy!",
+                    "text": "'\"Halt!\" to a horse'",
+                    "valid_links": [],
+                    "value": 100
+                },
+                "alive": true,
+                "id": 11643
+            },
+            {
+                "question": {
+                    "id": 20058,
+                    "air_date": "1997-10-02",
+                    "answer": "Who, what, when, where & why",
+                    "category": "SAY \"WH\"?",
+                    "daily_double": false,
+                    "round": "Jeopardy!",
+                    "text": "'They're the traditional 5 W's of journalism'",
+                    "valid_links": [],
+                    "value": 200
+                },
+                "alive": true,
+                "id": 11644
+            },
+            {
+                "question": {
+                    "id": 20064,
+                    "air_date": "1997-10-02",
+                    "answer": "Whippoorwill",
+                    "category": "SAY \"WH\"?",
+                    "daily_double": false,
+                    "round": "Jeopardy!",
+                    "text": "'It makes the sound heard here:'",
+                    "valid_links": [],
+                    "value": 300
+                },
+                "alive": true,
+                "id": 11645
+            },
+            {
+                "question": {
+                    "id": 20070,
+                    "air_date": "1997-10-02",
+                    "answer": "Whirlpool",
+                    "category": "SAY \"WH\"?",
+                    "daily_double": false,
+                    "round": "Jeopardy!",
+                    "text": "'Ulysses' \"Charybdis\" or Poe's \"Maelstrom\"'",
+                    "valid_links": [],
+                    "value": 400
+                },
+                "alive": true,
+                "id": 11646
+            },
+            {
+                "question": {
+                    "id": 20076,
+                    "air_date": "1997-10-02",
+                    "answer": "Wheelies",
+                    "category": "SAY \"WH\"?",
+                    "daily_double": false,
+                    "round": "Jeopardy!",
+                    "text": "'Kids like to do them with their bikes, off the curb'",
+                    "valid_links": [],
+                    "value": 500
+                },
+                "alive": true,
+                "id": 11647
+            }
+        ],
+        "BRITISH CHILDREN'S AUTHORS": [
+            {
+                "question": {
+                    "id": 52472,
+                    "air_date": "1997-04-08",
+                    "answer": "A.A. Milne",
+                    "category": "BRITISH CHILDREN'S AUTHORS",
+                    "daily_double": false,
+                    "round": "Jeopardy!",
+                    "text": "'He first wrote about Christopher Robin in the verse book \"When We Were Very Young\"'",
+                    "valid_links": [],
+                    "value": 100
+                },
+                "alive": true,
+                "id": 11653
+            },
+            {
+                "question": {
+                    "id": 52478,
+                    "air_date": "1997-04-08",
+                    "answer": "Lewis Carroll",
+                    "category": "BRITISH CHILDREN'S AUTHORS",
+                    "daily_double": false,
+                    "round": "Jeopardy!",
+                    "text": "'He began his \"Jabberwocky\" poem, \" 'Twas brillig, and the slithy toves...\"'",
+                    "valid_links": [],
+                    "value": 200
+                },
+                "alive": true,
+                "id": 11654
+            },
+            {
+                "question": {
+                    "id": 52484,
+                    "air_date": "1997-04-08",
+                    "answer": "Beatrix Potter",
+                    "category": "BRITISH CHILDREN'S AUTHORS",
+                    "daily_double": false,
+                    "round": "Jeopardy!",
+                    "text": "'Though written in 1906, her story of \"The Sly Old Cat\" wasn't published until 1971'",
+                    "valid_links": [],
+                    "value": 300
+                },
+                "alive": true,
+                "id": 11655
+            },
+            {
+                "question": {
+                    "id": 52490,
+                    "air_date": "1997-04-08",
+                    "answer": "Watership Down",
+                    "category": "BRITISH CHILDREN'S AUTHORS",
+                    "daily_double": false,
+                    "round": "Jeopardy!",
+                    "text": "'Richard Adams originally told this rabbit tale to amuse his young daughters'",
+                    "valid_links": [],
+                    "value": 400
+                },
+                "alive": true,
+                "id": 11656
+            },
+            {
+                "question": {
+                    "id": 52496,
+                    "air_date": "1997-04-08",
+                    "answer": "P.L. Travers",
+                    "category": "BRITISH CHILDREN'S AUTHORS",
+                    "daily_double": false,
+                    "round": "Jeopardy!",
+                    "text": "'This author famous for her Mary Poppins books passed away in 1996'",
+                    "valid_links": [],
+                    "value": 500
+                },
+                "alive": true,
+                "id": 11657
+            }
+        ],
+        "TV HAYSEEDS": [
+            {
+                "question": {
+                    "id": 91290,
+                    "air_date": "1998-09-18",
+                    "answer": "Gomer Pyle",
+                    "category": "TV HAYSEEDS",
+                    "daily_double": false,
+                    "round": "Jeopardy!",
+                    "text": "'From 1964 to 1969 Jim Nabors was semper silly as this Marine from Mayberry'",
+                    "valid_links": [],
+                    "value": 100
+                },
+                "alive": true,
+                "id": 11673
+            },
+            {
+                "question": {
+                    "id": 91296,
+                    "air_date": "1998-09-18",
+                    "answer": "Elly May Clampett",
+                    "category": "TV HAYSEEDS",
+                    "daily_double": false,
+                    "round": "Jeopardy!",
+                    "text": "'This character was Granny's granddaughter, Jed's daughter & Jethro's cousin'",
+                    "valid_links": [],
+                    "value": 200
+                },
+                "alive": true,
+                "id": 11674
+            },
+            {
+                "question": {
+                    "id": 91302,
+                    "air_date": "1998-09-18",
+                    "answer": "\"Boss\" Jefferson Davis Hogg",
+                    "category": "TV HAYSEEDS",
+                    "daily_double": false,
+                    "round": "Jeopardy!",
+                    "text": "'Sorrell Booke played this porcine power broker of Hazzard County'",
+                    "valid_links": [],
+                    "value": 300
+                },
+                "alive": true,
+                "id": 11675
+            },
+            {
+                "question": {
+                    "id": 91308,
+                    "air_date": "1998-09-18",
+                    "answer": "Sam McCloud",
+                    "category": "TV HAYSEEDS",
+                    "daily_double": false,
+                    "round": "Jeopardy!",
+                    "text": "'In the '70s Dennis Weaver was this New Mexico deputy marshal learning to fight crime in New York'",
+                    "valid_links": [],
+                    "value": 400
+                },
+                "alive": true,
+                "id": 11676
+            },
+            {
+                "question": {
+                    "id": 91314,
+                    "air_date": "1998-09-18",
+                    "answer": "Larry",
+                    "category": "TV HAYSEEDS",
+                    "daily_double": false,
+                    "round": "Jeopardy!",
+                    "text": "'On \"Newhart\" William Sanderson played this backwoodsman who had 2 brothers named Darryl'",
+                    "valid_links": [],
+                    "value": 500
+                },
+                "alive": true,
+                "id": 11677
+            }
+        ],
+        "THE STAND": [
+            {
+                "question": {
+                    "id": 137505,
+                    "air_date": "1998-10-02",
+                    "answer": "the Wall Street Journal",
+                    "category": "THE STAND",
+                    "daily_double": false,
+                    "round": "Jeopardy!",
+                    "text": "'Most newspaper stands carry this financial daily paper published by Dow Jones & Co. Inc.'",
+                    "valid_links": [],
+                    "value": 100
+                },
+                "alive": true,
+                "id": 11683
+            },
+            {
+                "question": {
+                    "id": 137511,
+                    "air_date": "1998-10-02",
+                    "answer": "the National Enquirer",
+                    "category": "THE STAND",
+                    "daily_double": false,
+                    "round": "Jeopardy!",
+                    "text": "'This supermarket tabloid claims \"the largest circulation of any paper in America\"'",
+                    "valid_links": [],
+                    "value": 200
+                },
+                "alive": true,
+                "id": 11684
+            },
+            {
+                "question": {
+                    "id": 137517,
+                    "air_date": "1998-10-02",
+                    "answer": "Variety",
+                    "category": "THE STAND",
+                    "daily_double": false,
+                    "round": "Jeopardy!",
+                    "text": "'\"The Hollywood Reporter\" & this \"Daily\" constitute \"the trades\" of the TV & film industry'",
+                    "valid_links": [],
+                    "value": 300
+                },
+                "alive": true,
+                "id": 11685
+            },
+            {
+                "question": {
+                    "id": 137523,
+                    "air_date": "1998-10-02",
+                    "answer": "Cosmopolitan",
+                    "category": "THE STAND",
+                    "daily_double": false,
+                    "round": "Jeopardy!",
+                    "text": "'One of the better-selling issues of this women's magazine was the April 1972 issue featuring Burt Reynolds'",
+                    "valid_links": [],
+                    "value": 400
+                },
+                "alive": true,
+                "id": 11686
+            },
+            {
+                "question": {
+                    "id": 137529,
+                    "air_date": "1998-10-02",
+                    "answer": "TIME",
+                    "category": "THE STAND",
+                    "daily_double": false,
+                    "round": "Jeopardy!",
+                    "text": "'Josef Stalin, Newt Gingrich & Adolf Hitler have all been this magazine's \"Man of the Year\"'",
+                    "valid_links": [],
+                    "value": 500
+                },
+                "alive": true,
+                "id": 11687
+            }
+        ]
+    }
+}

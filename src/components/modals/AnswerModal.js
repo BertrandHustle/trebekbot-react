@@ -42,6 +42,7 @@ export default function AnswerForm() {
 			// if question is answered correctly
 			if (result === true) {
 				killTile(activeQuestionTileId, setActiveQuestionTileId);
+				setActiveQuestionTileId();
 				setWager(0);
 				setTime(0);
 				setQuestion();

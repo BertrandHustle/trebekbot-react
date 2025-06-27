@@ -1,39 +1,12 @@
-import React, { useState, useContext } from 'react';
+import React, { useState } from 'react';
 
 import Card from 'react-bootstrap/Card';
 
-import { BoardIdContext } from 'App';
-
 import './cards.css'
 
-export default function CategoryTile ({ category }) {
+export default function CategoryTile ({ alive, category }) {
 
-    const [ isAlive, setIsAlive ] = useState(alive);
-    const { boardId } = useContext(BoardIdContext);
-
-    useEffect(() => {
-        API.get(trebekbotUrls.board, {
-            params: {
-                boardId: boardId
-            }
-        })
-            .then(res => {
-                if (res.status === 200) {
-                    let parsedData = JSON.parse(res.data);
-                    let categoryTiles = parsedData.map(
-                        function(questionTile) { return questionTile.category === category }
-                    );
-                    function tileIsAlive(tile){
-                        return tile.isAlive;
-                    }
-                    setIsAlive(categoryTiles.some(tileIsAlive));
-                }
-                else {
-                    console.log('Unable to get QuestionTile status!');
-                }
-            })
-        sessionStorage.setItem('activeQuestionTileId', id)
-    }, [activeQuestionTileId, id, setActiveQuestionTileId]);
+    const [ isAlive ] = useState(alive);
 
     return(
         <div>

@@ -1,4 +1,4 @@
-import { BoardIdContext } from 'App';
+import { ActiveQuestionTileIdContext, BoardIdContext } from 'App';
 import React, { useContext, useEffect, useState } from 'react';
 import { Col, Container, Row } from 'react-bootstrap';
 
@@ -7,6 +7,7 @@ import CategoryTile from 'components/cards/CategoryTile';
 import QuestionTile from 'components/cards/QuestionTile';
 
 export default function GameBoard () {
+    const { activeQuestionTileId } = useContext(ActiveQuestionTileIdContext);  // used to force rerenders
     const { boardId, setBoardId } = useContext(BoardIdContext);
     const [ boardDict, setBoardDict ] = useState();
     const defaultRound = 'Jeopardy!'
@@ -21,7 +22,8 @@ export default function GameBoard () {
                     sessionStorage.setItem('boardId', parsedData.boardId)
                 })
         } 
-        else if (!boardDict) {
+        // TODO: make this stop firing constantly (because of changes to boardDict?)
+        else {
             API.get(trebekbotUrls.board, 
                 {
                     params: {
@@ -33,7 +35,11 @@ export default function GameBoard () {
                     setBoardDict(parsedData.boardDict);
                 })
         }
-    }, [boardId, boardDict, setBoardId, setBoardDict] )
+    }, [activeQuestionTileId, boardId, setBoardId, setBoardDict] )
+
+    function categoryIsAlive(category) {
+        return boardDict[category].some(function(tile) {return tile.alive})
+    }
     
     return(
         <div>
@@ -41,7 +47,7 @@ export default function GameBoard () {
                 <Row>
                     {boardDict ? Object.keys(boardDict).map(cat => 
                         <Col key={cat}>
-                            <CategoryTile category={cat}/>
+                            <CategoryTile alive={categoryIsAlive(cat)} category={cat}/>
                             {boardDict[cat].map(tile => 
                                 <Col key={tile.id}>
                                     <QuestionTile alive={tile.alive} id={tile.id} tileQuestion={tile.question}/>

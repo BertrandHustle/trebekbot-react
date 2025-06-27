@@ -32,21 +32,21 @@ export default function QuestionTile ({ alive, id, tileQuestion }) {
     const { setTime } = useContext(TimerContext);
 
     // TODO: make this status update a single call to /board instead of individual calls per-tile?
-    useEffect(() => {
-        API.get(trebekbotUrls.board, {
-            params: {tileId: id}
-        })
-            .then(res => {
-                if (res.status === 200) {
-                    let tileIsAlive = JSON.parse(res.data).alive;
-                    setIsAlive(tileIsAlive);
-                }
-                else {
-                    console.log('Unable to get QuestionTile status!');
-                }
-            })
-        sessionStorage.setItem('activeQuestionTileId', id)
-    }, [activeQuestionTileId, id, setActiveQuestionTileId]);
+    // useEffect(() => {
+    //     API.get(trebekbotUrls.board, {
+    //         params: {tileId: id}
+    //     })
+    //         .then(res => {
+    //             if (res.status === 200) {
+    //                 let tileIsAlive = JSON.parse(res.data).alive;
+    //                 setIsAlive(tileIsAlive);
+    //             }
+    //             else {
+    //                 console.log('Unable to get QuestionTile status!');
+    //             }
+    //         })
+    //     sessionStorage.setItem('activeQuestionTileId', id)
+    // }, [activeQuestionTileId, id, setActiveQuestionTileId]);
 
     function arrayAudioVisualLinks(links) {
         let audioLinkArray = [];
