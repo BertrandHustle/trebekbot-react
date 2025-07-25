@@ -13,10 +13,11 @@
     "react-dom": "^18.2.0",
     "react-scripts": "5.0.1",
     "reactstrap": "^9.1.4",
+    "viject": "^1.4.0",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start": "react-scripts -r @cypress/instrument-cra start",
     "build": "react-scripts build",
     "test": "vitest",
     "eject": "react-scripts eject"
@@ -42,7 +43,9 @@
   "devDependencies": {
     "@testing-library/dom": "^10.4.0",
     "@testing-library/react": "^16.3.0",
+    "cypress": "^14.5.1",
     "msw": "^2.10.2",
+    "vite-jsconfig-paths": "^2.0.1",
     "vitest": "^3.2.3"
   }
 }
