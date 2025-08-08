@@ -2,8 +2,8 @@ import React, {useContext, useEffect} from 'react';
 
 import './timer.css'
 import TimerLight from './TimerLight';
-import { killTile } from 'components/cards/QuestionTile';
-import { ActiveQuestionTileIdContext, QuestionContext, TimerContext, WagerContext } from 'App';
+import { killTile } from '@/components/cards/QuestionTile';
+import { ActiveQuestionTileIdContext, QuestionContext, TimerContext, WagerContext } from '@/App';
 
 export default function Timer () {
     const { activeQuestionTileId, setActiveQuestionTileId } = useContext(ActiveQuestionTileIdContext);

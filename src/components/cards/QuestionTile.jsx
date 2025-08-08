@@ -1,9 +1,8 @@
 import React, { useContext, useEffect, useState } from 'react';
-
-import { ActiveQuestionTileIdContext, QuestionContext, QuestionAudioLinksContext, QuestionVisualLinksContext, TimerContext } from 'App';
 import Card from 'react-bootstrap/Card';
 
-import API, { trebekbotUrls } from 'TrebekbotAPI';
+import { ActiveQuestionTileIdContext, QuestionContext, QuestionAudioLinksContext, QuestionVisualLinksContext, TimerContext } from '@/App';
+import API, { trebekbotUrls } from '@/TrebekbotAPI';
 import './cards.css';
 
 

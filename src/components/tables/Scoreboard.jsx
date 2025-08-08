@@ -1,9 +1,9 @@
 import Table from 'react-bootstrap/Table'
 
-import API from 'TrebekbotAPI';
-import { TopTenContext } from 'App';
+import API from '@/TrebekbotAPI';
+import { TopTenContext } from '@/App';
 import { useContext, useEffect } from 'react';
-import { trebekbotUrls } from 'TrebekbotAPI';
+import { trebekbotUrls } from '@/TrebekbotAPI';
 import './tables.css'
 
 export default function Scoreboard() {

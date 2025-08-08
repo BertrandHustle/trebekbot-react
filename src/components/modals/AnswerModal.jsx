@@ -5,9 +5,9 @@ import Modal from 'react-bootstrap/Modal';
 
 import { 
 	ActiveQuestionTileIdContext, QuestionContext, ScoreContext, UsernameContext, TimerContext, ToastMessageContext, TopTenContext, WagerContext 
-} from 'App';
-import { killTile } from 'components/cards/QuestionTile';
-import API, { trebekbotUrls } from 'TrebekbotAPI';
+} from '@/App';
+import { killTile } from '@/components/cards/QuestionTile';
+import API, { trebekbotUrls } from '@/TrebekbotAPI';
 import './modals.css'
 
 export default function AnswerForm() {

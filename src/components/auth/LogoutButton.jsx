@@ -1,10 +1,10 @@
 import { useContext } from 'react';
 import Button from 'react-bootstrap/Button';
 
-import { AuthContext, UsernameContext } from 'App';
+import { AuthContext, UsernameContext } from '@/App';
 
 import './auth.css';
-import API from 'TrebekbotAPI';
+import API from '@/TrebekbotAPI';
 
 export default function LogoutButton() {
 

@@ -1,6 +1,6 @@
 import Toast from 'react-bootstrap/Toast';
 
-import { ToastMessageContext } from "App";
+import { ToastMessageContext } from "@/App";
 import { useContext, useEffect, useState } from "react";
 import { ToastContainer } from 'react-bootstrap';
 

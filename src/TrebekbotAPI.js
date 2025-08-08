@@ -1,9 +1,9 @@
 import axios from 'axios'
 
-console.log(process.env.REACT_APP_PROXY)
+console.log(import.meta.env.VITE_PROXY)
 
 export default axios.create({
-  baseURL: process.env.REACT_APP_PROXY,
+  baseURL: import.meta.env.VITE_PROXY,
   xsrfCookieName: 'csrftoken',
   xsrfHeaderName: 'X-CSRFTOKEN',
   withCredentials: true,

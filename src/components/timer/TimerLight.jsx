@@ -1,7 +1,7 @@
 import React, {useContext} from 'react';
 import Button from 'react-bootstrap/Button';
 
-import { questionTotalTime, TimerContext} from 'App';
+import { questionTotalTime, TimerContext} from '@/App';
 import './timer.css'
 
 export default function TimerLight ({ activationPercentage }) {

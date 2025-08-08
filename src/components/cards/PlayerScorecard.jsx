@@ -2,7 +2,7 @@ import { useContext } from 'react';
 import Card from 'react-bootstrap/Card';
 
 import './cards.css'
-import { ScoreContext, UsernameContext } from 'App';
+import { ScoreContext, UsernameContext } from '@/App';
 
 export default function PlayerScorecard() {
     const { username } = useContext(UsernameContext);

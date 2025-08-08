@@ -1,8 +1,8 @@
 import { useContext, useState } from 'react';
 
-import { AuthContext, ToastMessageContext, UsernameContext } from 'App';
-import API from 'TrebekbotAPI';
-import { trebekbotUrls } from 'TrebekbotAPI';
+import { AuthContext, ToastMessageContext, UsernameContext } from '@/App';
+import API from '@/TrebekbotAPI';
+import { trebekbotUrls } from '@/TrebekbotAPI';
 import './forms.css'
 
 export default function LoginForm() {

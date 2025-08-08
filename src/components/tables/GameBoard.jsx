@@ -1,10 +1,10 @@
-import { ActiveQuestionTileIdContext, BoardIdContext } from 'App';
+import { ActiveQuestionTileIdContext, BoardIdContext } from '@/App';
 import React, { useContext, useEffect, useState } from 'react';
 import { Col, Container, Row } from 'react-bootstrap';
 
-import API, { trebekbotUrls } from 'TrebekbotAPI';
-import CategoryTile from 'components/cards/CategoryTile';
-import QuestionTile from 'components/cards/QuestionTile';
+import API, { trebekbotUrls } from '@/TrebekbotAPI';
+import CategoryTile from '@/components/cards/CategoryTile';
+import QuestionTile from '@/components/cards/QuestionTile';
 
 export default function GameBoard () {
     const { activeQuestionTileId } = useContext(ActiveQuestionTileIdContext);  // used to force rerenders
