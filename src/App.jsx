@@ -69,7 +69,7 @@ export default function App() {
 		if (initTimer && initQuestionId) {
 			API.post(trebekbotUrls.question, {"questionId": initQuestionId})
 				.then((response) => {
-					setQuestion(JSON.parse(response.data));
+					setQuestion(response.data);
 				});
 		}
 	}, [isAuthenticated]);

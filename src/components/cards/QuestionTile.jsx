@@ -37,7 +37,7 @@ export default function QuestionTile ({ alive, id, tileQuestion }) {
     //     })
     //         .then(res => {
     //             if (res.status === 200) {
-    //                 let tileIsAlive = JSON.parse(res.data).alive;
+    //                 let tileIsAlive = res.data.alive;
     //                 setIsAlive(tileIsAlive);
     //             }
     //             else {
@@ -65,14 +65,13 @@ export default function QuestionTile ({ alive, id, tileQuestion }) {
         if (isAlive) {
             API.post(trebekbotUrls.question, {questionId: tileQuestion.id})
                 .then(res => {
-                    let parsedData = JSON.parse(res.data);
                     setActiveQuestionTileId(id);
                     setTime(60);
-                    setQuestion(parsedData);
-                    let [audioLinkArray, visualLinkArray] = arrayAudioVisualLinks(parsedData.valid_links);
+                    setQuestion(res.data);
+                    let [audioLinkArray, visualLinkArray] = arrayAudioVisualLinks(res.data.valid_links);
                     setQuestionAudioLinks(audioLinkArray);
                     setQuestionVisualLinks(visualLinkArray);
-                    sessionStorage.setItem('questionId', parsedData.id)
+                    sessionStorage.setItem('questionId', res.data.id)
                 }
             )
         }

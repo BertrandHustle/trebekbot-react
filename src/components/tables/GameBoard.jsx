@@ -16,9 +16,8 @@ export default function GameBoard () {
         if (boardId == null) {
             API.post(trebekbotUrls.board, {round: defaultRound})
                 .then(res => {
-                    let parsedData = JSON.parse(res.data);
-                    setBoardId(parsedData.boardId);
-                    setBoardDict(parsedData.boardDict);
+                    setBoardId(res.data.boardId);
+                    setBoardDict(res.data.boardDict);
                     sessionStorage.setItem('boardId', parsedData.boardId)
                 })
         } 
@@ -30,8 +29,7 @@ export default function GameBoard () {
                     }
                 })
                 .then(res => {
-                    let parsedData = JSON.parse(res.data);
-                    setBoardDict(parsedData.boardDict);
+                    setBoardDict(res.data.boardDict);
                 })
         }
     }, [activeQuestionTileId, boardId, setBoardId, setBoardDict] )
@@ -41,7 +39,7 @@ export default function GameBoard () {
     }
     
     return(
-        <div>
+        <div data-cy='gameboard'>
             <Container>
                 <Row>
                     {boardDict ? Object.keys(boardDict).map(cat => 
